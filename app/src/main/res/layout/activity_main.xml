@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Main"
+    android:id="@+id/drawer_main_id">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <include
+            android:id="@+id/header_id"
+            layout="@layout/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="0dp" />
+
+        <ScrollView
+            android:id="@+id/cars"
+            android:scrollbarSize="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/header_id"
+
+            android:layout_marginTop="1dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:id="@+id/ambulance_layout_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_request_layout"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="35dp">
+
+                    <ImageView
+                        android:id="@+id/ambulance_picture_id"
+                        android:layout_width="150dp"
+                        android:layout_height="250dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="11dp"
+                        app:srcCompat="@drawable/ambulance"
+                        />
+
+                    <CheckBox
+                        android:id="@+id/cb_ambulance_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="50dp"
+                        android:fontFamily="@font/convergence"
+                        android:paddingStart="10dp"
+                        android:text="@string/ambulance"
+                        android:textSize="20sp" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/firefighter_layout_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_request_layout"
+                    android:layout_below="@id/ambulance_layout_id"
+                    android:layout_marginTop="35dp">
+
+                    <ImageView
+                        android:id="@+id/firefighter_picture_id"
+                        android:layout_width="150dp"
+                        android:layout_height="250dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="11dp"
+                        app:srcCompat="@drawable/fire_car" />
+
+                    <CheckBox
+                        android:id="@+id/cb_firefighter_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="50dp"
+                        android:fontFamily="@font/convergence"
+                        android:paddingStart="10dp"
+                        android:text="@string/fire_fighter"
+                        android:textSize="20sp" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/police_layout_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_request_layout"
+                    android:layout_below="@id/firefighter_layout_id"
+                    android:layout_marginTop="35dp">
+
+                    <ImageView
+                        android:id="@+id/police_picture_id"
+                        android:layout_width="150dp"
+                        android:layout_height="250dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="11dp"
+                        app:srcCompat="@drawable/police" />
+
+                    <CheckBox
+                        android:id="@+id/cb_police_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="50dp"
+                        android:fontFamily="@font/convergence"
+                        android:paddingStart="10dp"
+                        android:text="@string/police"
+                        android:textSize="20sp" />
+
+                </RelativeLayout>
+
+
+                <Button
+                    android:id="@+id/btn_request_id"
+                    android:layout_width="@dimen/width_btn_login"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/police_layout_id"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="35dp"
+                    android:background="@drawable/bg_button_master"
+                    android:fontFamily="@font/convergence"
+                    android:text="@string/next_btn"
+                    android:textAllCaps="false"
+                    android:textColor="@color/text2"
+                    android:textSize="@dimen/text_size_button" />
+
+                <Button
+
+                    android:id="@+id/btn_direct_call_id"
+                    android:layout_width="@dimen/width_btn_login"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/btn_request_id"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="35dp"
+                    android:background="@drawable/bg_button_seconder"
+                    android:fontFamily="@font/convergence"
+                    android:text="@string/call"
+                    android:padding="5dp"
+                    android:textAllCaps="false"
+                    android:drawableStart="@drawable/call_icon"
+                    android:textColor="@color/master"
+                    android:textSize="@dimen/text_size_button" />
+
+            </RelativeLayout>
+        </ScrollView>
+
+
+    </RelativeLayout>
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_side_list_id"
+        android:layout_width="match_parent"
+        android:layout_gravity="start"
+        android:layout_height="match_parent"
+        app:headerLayout="@layout/header_side_list"
+        app:menu="@menu/side_list_navigation"
+
+        />
+</androidx.drawerlayout.widget.DrawerLayout>

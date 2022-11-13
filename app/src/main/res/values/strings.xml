@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Emergency Jo</string>
+    <string name="hint_personal_ID_number">Personal ID Number</string>
+    <string name="name_app1">Emergency</string>
+    <string name="name_app2">Jo</string>
+    <string name="hint_password">Password</string>
+    <string name="btn_login">Log In</string>
+    <string name="link_forgot_password">forgot password ?</string>
+    <string name="btn_signUp">Sign Up</string>
+    <string name="hint_registration_number">000/000</string>
+    <string name="get_data_btn">Get Data</string>
+    <string name="tv_name_signup">Name</string>
+    <string name="tv_gender_signup">Gender</string>
+    <string name="tv_birthday_signup">Birthday</string>
+    <string name="tv_governorate_signup">Governorate</string>
+    <string name="tv_mother_name_signup">Mother Name</string>
+    <string name="hint_re_password">Re-Password</string>
+    <string name="btn_create_account">Create Account</string>
+    <string name="message_personal_id_empty">Enter Personal Id</string>
+    <string name="message_qualifier_number_empty">Enter Qualifier Number</string>
+    <string name="btn_request">Request</string>
+    <string name="direct_call">Direct Call 911</string>
+    <string name="ambulance">Ambulance</string>
+    <string name="fire_fighter">Fire Fighter</string>
+    <string name="police">Police</string>
+    <string name="call">Call</string>
+    <string name="next_btn">Next</string>
+    <string name="home_side_list">Home</string>
+    <string name="safety_instructions_side_list">Safety Instructions</string>
+    <string name="setting_side_list">Setting</string>
+    <string name="log_out_side_list">Log Out</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+
+</resources>
