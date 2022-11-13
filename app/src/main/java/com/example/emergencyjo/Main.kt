@@ -37,6 +37,10 @@ class Main : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
 
             startActivity(intent)
         }
+        btn_request_id.setOnClickListener {
+            var GoToMap = Intent (this , MapsActivity :: class.java)
+            startActivity(GoToMap)
+        }
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -50,7 +54,7 @@ class Main : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
         if(drawer_main_id.isDrawerOpen(GravityCompat.START))
             closeDrawer()
         else
-        super.onBackPressed()
+            super.onBackPressed()
     }
 
     private fun closeDrawer()

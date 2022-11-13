@@ -31,5 +31,6 @@
     <string name="log_out_side_list">Log Out</string>
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
+    <string name="title_activity_maps">MapsActivity</string>
 
 </resources>

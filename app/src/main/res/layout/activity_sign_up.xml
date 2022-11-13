@@ -62,7 +62,8 @@
             android:text="@string/get_data_btn"
             android:textAllCaps="false"
             android:textColor="@color/text2"
-            android:textSize="@dimen/text_size_button" />
+            android:textSize="@dimen/text_size_button"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <TextView
             android:id="@+id/tv_name_signup_id"
@@ -182,7 +183,8 @@
                 android:fontFamily="@font/convergence"
                 android:hint="@string/hint_password"
                 android:inputType="textPassword"
-                android:textSize="@dimen/text_size_input_box" />
+                android:textSize="@dimen/text_size_input_box"
+                tools:ignore="SpeakableTextPresentCheck" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <!--password box -->
