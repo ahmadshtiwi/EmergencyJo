@@ -33,7 +33,6 @@
             android:ems="10"
             android:fontFamily="@font/convergence"
             android:hint="@string/hint_personal_ID_number"
-            android:inputType="number"
             android:textSize="@dimen/text_size_input_box" />
 
         <EditText
@@ -55,8 +54,9 @@
             android:layout_width="@dimen/width_btn_get_signup"
             android:layout_height="@dimen/height_button"
             android:layout_below="@+id/et_personal_id_signup_id"
-            android:layout_centerHorizontal="true"
+            android:layout_alignEnd="@+id/et_qualifier_number_signup_id"
             android:layout_marginTop="65dp"
+            android:layout_marginEnd="82dp"
             android:background="@drawable/bg_button_master"
             android:fontFamily="@font/convergence"
             android:text="@string/get_data_btn"
@@ -71,8 +71,8 @@
             android:layout_height="@dimen/height_box_signup"
             android:layout_below="@+id/btn_get_data_id"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="55dp"
-            android:layout_marginEnd="15dp"
+            android:layout_marginTop="51dp"
+            android:layout_marginEnd="51dp"
             android:background="#eee"
             android:fontFamily="@font/convergence"
             android:gravity="center_vertical"

@@ -5,30 +5,52 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import androidx.appcompat.widget.Toolbar
+import android.widget.Toast
+import com.example.emergencyjo.databinding.ActivityLoginBinding
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
 
 class Login : AppCompatActivity() , TextWatcher {
+
+    private lateinit var binding: ActivityLoginBinding
+    private lateinit var firebaseAuth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        //Get Data From AUTHDATABASE
+        firebaseAuth = FirebaseAuth.getInstance()
+        //Login Button
+        binding.loginButtonId.setOnClickListener()
+         {
+            val email = binding.etPersonalIdLoginId.text.toString()+"@gmail.com"
+            val pass = binding.etPasswordLoginId.text.toString()
 
-        login_button_id.setOnClickListener()  // log in button { use intent to go Main activity }
-        {
-            var goToMain = Intent(this, Main::class.java)
-            startActivity(goToMain)
+            if (email.isNotEmpty() && pass.isNotEmpty()) {
+                firebaseAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        val intent = Intent(this, Main::class.java)
+                        startActivity(intent)
+                    } else {
+                        Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
+
+                    }
+                }
+            } else {
+                Toast.makeText(this, "Empty Fields Are not Allowed !!", Toast.LENGTH_SHORT).show()
+
+            }
+
         }//end login_button
 
         signup_button_id.setOnClickListener() // Signup in button { use intent to go Sign Up activity }
         {
-            var goToSignUp = Intent(this, SignUp::class.java)
+            val goToSignUp = Intent(this, SignUp::class.java)
             startActivity(goToSignUp)
         }//end signup button
-
         et_password_login_id.addTextChangedListener(this)
         et_personal_id_login_id.addTextChangedListener(this)
-
-
     }//end onCreate method
 
     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int)
