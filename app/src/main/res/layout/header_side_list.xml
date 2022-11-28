@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".HeaderSideList">
 
     <ImageView
         android:id="@+id/image_logo_side_list_id"
@@ -17,11 +18,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/image_logo_side_list_id"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="39dp"
         android:layout_marginBottom="100dp"
         android:fontFamily="@font/convergence"
         android:padding="10dp"
         android:text="Name User"
         android:textColor="@color/text1"
+        android:textDirection="inherit"
         android:textSize="20sp" />
 </RelativeLayout>

@@ -21,28 +21,33 @@
             android:layout_marginStart="15dp"
             android:layout_marginTop="47dp"
             app:srcCompat="@drawable/user_icon_login" />
-
+<com.google.android.material.textfield.TextInputLayout
+    android:id="@+id/et_personal_id_layout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentTop="true"
+    android:layout_marginStart="13dp"
+    android:layout_toEndOf="@+id/imageView"
+    android:layout_marginTop="30dp">
         <EditText
             android:id="@+id/et_personal_id_signup_id"
             android:layout_width="@dimen/width_personal_id_signup"
             android:layout_height="@dimen/height_input_box"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="13dp"
-            android:layout_marginTop="30dp"
-            android:layout_toEndOf="@+id/imageView"
+
             android:ems="10"
             android:fontFamily="@font/convergence"
             android:hint="@string/hint_personal_ID_number"
             android:textSize="@dimen/text_size_input_box" />
+</com.google.android.material.textfield.TextInputLayout>
 
         <EditText
-            android:id="@+id/et_qualifier_number_signup_id"
+            android:id="@+id/et_check_number_signup_id"
             android:layout_width="@dimen/width_registration_number"
             android:layout_height="@dimen/height_input_box"
             android:layout_alignParentTop="true"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="30dp"
-            android:layout_toEndOf="@+id/et_personal_id_signup_id"
+            android:layout_marginTop="40dp"
+            android:layout_toEndOf="@+id/et_personal_id_layout"
             android:ems="10"
             android:gravity="center"
             android:hint="@string/hint_registration_number"
@@ -53,8 +58,8 @@
             android:id="@+id/btn_get_data_id"
             android:layout_width="@dimen/width_btn_get_signup"
             android:layout_height="@dimen/height_button"
-            android:layout_below="@+id/et_personal_id_signup_id"
-            android:layout_alignEnd="@+id/et_qualifier_number_signup_id"
+            android:layout_below="@+id/et_personal_id_layout"
+            android:layout_alignEnd="@+id/et_check_number_signup_id"
             android:layout_marginTop="65dp"
             android:layout_marginEnd="82dp"
             android:background="@drawable/bg_button_master"
@@ -162,13 +167,15 @@
             android:layout_toStartOf="@+id/et_password_layout"
             app:srcCompat="@drawable/lock_icon_login" />
 
+        <!--password box -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/et_password_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_birthday_signup_id"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="55dp"
+            android:layout_below="@+id/et_phone_number_layout"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="37dp"
+            android:layout_marginEnd="55dp"
             android:gravity="center"
             app:passwordToggleEnabled="true">
 
@@ -187,7 +194,6 @@
                 tools:ignore="SpeakableTextPresentCheck" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!--password box -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/et_re_password_layout"
             android:layout_width="wrap_content"
@@ -228,6 +234,29 @@
             android:textAllCaps="false"
             android:textColor="@color/text2"
             android:textSize="@dimen/text_size_button" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/et_phone_number_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_governorate_signup_id"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="61dp">
+
+            <EditText
+                android:id="@+id/et_phone_number_id"
+                android:layout_width="@dimen/width_input_box"
+                android:layout_height="@dimen/height_input_box"
+                android:hint="@string/hint_phone_number"
+                android:ems="10"
+                android:maxLength="10"
+                android:textSize="@dimen/text_size_input_box"
+                android:fontFamily="@font/convergence"
+                android:inputType="phone" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
 
     </RelativeLayout>
 
