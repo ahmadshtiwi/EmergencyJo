@@ -60,7 +60,7 @@ class SignUp : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
 
-       hideComponents()
+        hideComponents()
         connectDatabase()
 
         dataCivilAffairs= ArrayList()

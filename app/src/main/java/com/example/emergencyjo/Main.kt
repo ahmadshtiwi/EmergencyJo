@@ -24,7 +24,6 @@ class Main : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
 
 
 lateinit var userName:String
-
 lateinit var toolbar:Toolbar
 lateinit var mRefData:DatabaseReference
 lateinit var headerView:View

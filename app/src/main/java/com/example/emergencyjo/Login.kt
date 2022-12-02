@@ -19,7 +19,7 @@ class Login:AppCompatActivity(),TextWatcher{
 
     lateinit var dataLogin:ArrayList<DataBaseEmergencyUser>
      var mRefEmergencyUser: DatabaseReference?=null
-    var position:Int?=-1
+     var position:Int?=-1
 
      override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -33,10 +33,17 @@
     <dimen name="width_lock_icon">30dp</dimen>
     <dimen name="height_lock_icon">30dp</dimen>
     <dimen name="height_menu_icon">30dp</dimen>
-    <dimen name="width_menu_icon">30dp</dimen>  <dimen name="height_under_picture">80dp</dimen>
+    <dimen name="width_menu_icon">30dp</dimen>
+    <dimen name="height_under_picture">80dp</dimen>
     <dimen name="width_user_icon">30dp</dimen>
     <dimen name="height_user_icon">30dp</dimen>
     <dimen name="height_request_layout">170dp</dimen>
     <dimen name="text_size_toolbar">24sp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="nav_header_vertical_spacing">8dp</dimen>
+    <dimen name="nav_header_height">176dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 
 </resources>
