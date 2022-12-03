@@ -15,7 +15,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EmergencyJo"
         tools:targetApi="31">
-
+        <activity
+            android:name=".UserHomeActivity"
+            android:exported="false"
+            android:label="@string/title_activity_user_home"
+            android:theme="@style/Theme.EmergencyJo.NoActionBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".MainAfterLogin"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 

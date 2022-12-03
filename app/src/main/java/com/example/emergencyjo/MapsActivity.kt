@@ -4,8 +4,8 @@ import android.content.pm.PackageManager
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
-import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 
@@ -18,10 +18,10 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.example.emergencyjo.databinding.ActivityMapsBinding
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.google.android.gms.maps.model.MapStyleOptions
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
-    lateinit var toolbar: Toolbar
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapsBinding
     private lateinit var currentLocation: Location
@@ -37,7 +37,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
 
 
-
         //end Action Bar
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
 
@@ -45,6 +44,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         getcurrentLocationUser()
     }
+
 
     private fun getcurrentLocationUser() {
 
@@ -66,25 +66,25 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             return
         }
 
-    val getLocation= fusedLocationProviderClient.lastLocation.addOnSuccessListener {
+        val getLocation= fusedLocationProviderClient.lastLocation.addOnSuccessListener {
 
-            location ->
+                location ->
 
-        if(location != null ){
-            currentLocation = location
+            if(location != null ){
+                currentLocation = location
 
-            Toast.makeText(applicationContext,currentLocation.latitude.toString() + "" +
-            currentLocation.longitude.toString(),Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext,currentLocation.latitude.toString() + "" +
+                        currentLocation.longitude.toString(),Toast.LENGTH_LONG).show()
 
-            val mapFragment = supportFragmentManager
-                .findFragmentById(R.id.map) as SupportMapFragment
-            mapFragment.getMapAsync(this)
+                val mapFragment = supportFragmentManager
+                    .findFragmentById(R.id.map) as SupportMapFragment
+                mapFragment.getMapAsync(this)
 
+            }
         }
+
+
     }
-
-
-}
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -102,7 +102,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-val latLng = LatLng(currentLocation.latitude , currentLocation.longitude)
+        mMap.uiSettings.isZoomControlsEnabled = true
+        val latLng = LatLng(currentLocation.latitude , currentLocation.longitude)
         val markerOptions = MarkerOptions().position(latLng).title("Current Location")
         googleMap?.animateCamera(CameraUpdateFactory.newLatLng(latLng))
         googleMap?.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 7f))

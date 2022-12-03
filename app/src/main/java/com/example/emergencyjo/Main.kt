@@ -36,11 +36,10 @@ lateinit var headerView:View
 
 
 
-         toolbar=findViewById<Toolbar>(R.id.header_id)
+        toolbar = findViewById<Toolbar>(R.id.header_id)
 
         setSupportActionBar(toolbar)
-        supportActionBar?.title=""
-
+        supportActionBar?.title = ""
         connectActionbar()
 
         connectDataBase()
@@ -53,18 +52,6 @@ lateinit var headerView:View
 
 
 
-
-
-
-        btn_direct_call_id.setOnClickListener() {
-            intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:911"))
-
-            startActivity(intent)
-        }
-        btn_request_id.setOnClickListener {
-            var GoToMap = Intent (this , MapsActivity :: class.java)
-            startActivity(GoToMap)
-        }
     }
 
     override fun onStart() {

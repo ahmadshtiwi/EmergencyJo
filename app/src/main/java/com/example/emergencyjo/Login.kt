@@ -28,7 +28,7 @@ class Login:AppCompatActivity(),TextWatcher{
          var test=getID()
          if(test.length==10)
          {
-             var goToMain=Intent(this,Main::class.java)
+             var goToMain=Intent(this,MapsActivity::class.java)
              startActivity(goToMain)
              finish()
 
@@ -90,9 +90,8 @@ class Login:AppCompatActivity(),TextWatcher{
             else if (dataLogin[position!!].password == password) {
 
                 savedIdToSharedPreferences(dataLogin[position!!])
-
-                var goToMain=Intent(this,Main::class.java)
-                startActivity(goToMain)
+                var GoToMap = Intent (this , MapsActivity :: class.java)
+                startActivity(GoToMap)
                 finish()
 
             }
