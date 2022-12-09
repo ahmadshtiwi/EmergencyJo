@@ -91,13 +91,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                     Manifest.permission.ACCESS_COARSE_LOCATION
                 ) != PackageManager.PERMISSION_GRANTED
             ) {
-                // TODO: Consider calling
-                //    ActivityCompat#requestPermissions
-                // here to request the missing permissions, and then overriding
-                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                //                                          int[] grantResults)
-                // to handle the case where the user grants the permission. See the documentation
-                // for ActivityCompat#requestPermissions for more details.
                 return
             }
             this.map.isMyLocationEnabled = true
@@ -155,7 +148,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             map.moveCamera(CameraUpdateFactory.newLatLngZoom(latlng, CAMERA_ZOOM_LEVEL))
 
             val database = Firebase.database
-            val reference = database.getReference("Users Location")
+            val reference = database.getReference("UsersLocation")
             val key = reference.push().key
             if (key != null) {
                 val reminder = Reminder(key, latlng.latitude, latlng.longitude)
