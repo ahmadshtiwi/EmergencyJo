@@ -16,6 +16,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.header_side_list.view.*
 
 
@@ -57,6 +58,33 @@ lateinit var headerView:View
     override fun onStart() {
         super.onStart()
 
+        btn_map_id.setOnClickListener()
+        {
+            intent=Intent(this,MapsActivity::class.java)
+            startActivity(intent)
+        }
+
+        tv_fire_id.setOnClickListener()
+        {
+            var fire=tv_fire_id.text.toString()
+            et_descrption_box_id.setText(fire)
+        }
+        tv_accident_id.setOnClickListener()
+        {
+            var accedent=tv_accident_id.text.toString()
+            et_descrption_box_id.setText(accedent)
+        }
+        tv_stroke_id.setOnClickListener()
+        {
+            var stroke=tv_stroke_id.text.toString()
+            et_descrption_box_id.setText(stroke)
+
+        }
+        btn_direct_call_id.setOnClickListener()
+        {
+            var goToCall =Intent(Intent.ACTION_DIAL, Uri.parse("tel:911"))
+            startActivity(goToCall)
+        }
 
 
     }
@@ -83,7 +111,17 @@ lateinit var headerView:View
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
 
-        var item=item.title
+        var item=item.itemId
+        when(item)
+        {
+            R.id.logout_side_list_id->{
+                editIdToSharedPreferences()
+            var goToLogin=Intent(this,Login::class.java)
+                startActivity(goToLogin)
+                finish()
+            }
+
+        }
         Toast.makeText(this, "$item", Toast.LENGTH_SHORT).show()
         closeDrawer()
         return true
@@ -101,7 +139,16 @@ lateinit var headerView:View
         drawer_main_id.closeDrawer(GravityCompat.START)
 
     }
+    private fun editIdToSharedPreferences() {
 
+        var sharedPreferences=getSharedPreferences("Information", Context.MODE_PRIVATE)
+        var editor=sharedPreferences.edit()
+        editor.putString("user_id","0")
+
+
+
+        editor.commit()
+    }
 private fun connectDataBase()
 {
     var database=Firebase.database
@@ -109,5 +156,12 @@ private fun connectDataBase()
 
 }
 
+
+//    fun setDescription(view: View)
+//    {
+//
+//
+//
+//    }
 
 }

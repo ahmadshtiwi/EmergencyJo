@@ -1,12 +1,14 @@
 package com.example.emergencyjo
 
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.example.emergencyjo.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -17,9 +19,14 @@ import kotlinx.android.synthetic.main.activity_login.*
 
 class Login:AppCompatActivity(),TextWatcher{
 
-    lateinit var dataLogin:ArrayList<DataBaseEmergencyUser>
-     var mRefEmergencyUser: DatabaseReference?=null
-     var position:Int?=-1
+    private lateinit var dataLogin:ArrayList<DataBaseEmergencyUser>
+    private var mRefEmergencyUser: DatabaseReference?=null
+    private var position:Int?=-1
+
+    var userProperties=UserProperties()
+
+
+/******************************* on create ***************************************************/
 
      override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,13 +35,11 @@ class Login:AppCompatActivity(),TextWatcher{
          var test=getID()
          if(test.length==10)
          {
-             var goToMain=Intent(this,MapsActivity::class.java)
-             startActivity(goToMain)
+             goToMainActivity()
              finish()
-
          }
-            dataLogin= ArrayList()
-        connectDataBase()
+         dataLogin= ArrayList()
+         connectDataBase()
 
         mRefEmergencyUser?.addValueEventListener(object :ValueEventListener
         {
@@ -44,29 +49,24 @@ class Login:AppCompatActivity(),TextWatcher{
                 {
                     dataLogin.add(snap.getValue(DataBaseEmergencyUser::class.java)!!)
                 }
-            }
+            }// end data chang
+            override fun onCancelled(error: DatabaseError) {}
 
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-
-        })
+        })//end add value event listener
 
 
-
-        et_password_login_id.addTextChangedListener(this)
-        et_personal_id_login_id.addTextChangedListener(this)
+        et_password_login_id.addTextChangedListener(this)  // using text watcher
+        et_personal_id_login_id.addTextChangedListener(this) //using text watcher
     }//end onCreate method
 
-
+/***************************************** on start ***************************************/
 
     override fun onStart() {
         super.onStart()
 
         signup_button_id.setOnClickListener() // Signup in button { use intent to go Sign Up activity }
         {
-            val goToSignUp = Intent(this, SignUp::class.java)
-            startActivity(goToSignUp)
+          goToSignUpActivity()
         }//end signup button
 
         login_button_id.setOnClickListener()
@@ -74,27 +74,25 @@ class Login:AppCompatActivity(),TextWatcher{
             var personalID = et_personal_id_login_id.text.toString()
             var password = et_password_login_id.text.toString()
 
-            for (data in 0 until dataLogin.size) {
-
-
+            for (data in 0 until dataLogin.size) {      // get data from array list and check id found
 
                    if (dataLogin[data].personalID.equals(personalID)) {
                        position = data
                        break
                    }
 
-
             }
-            if(position==-1)
-                Toast.makeText(applicationContext, "Please sign Up", Toast.LENGTH_SHORT).show()
-            else if (dataLogin[position!!].password == password) {
+            if(position==-1) {
+             messageDialogToSignUp()
+            } // end if
 
-                savedIdToSharedPreferences(dataLogin[position!!])
-                var GoToMap = Intent (this , MapsActivity :: class.java)
-                startActivity(GoToMap)
+                else if (dataLogin[position!!].password == password) {
+
+                savedIdToSharedPreferences(dataLogin[position!!])           // save data in shared preferences
+               goToMainActivity()
                 finish()
 
-            }
+            } // end else
 
         }
 
@@ -102,24 +100,26 @@ class Login:AppCompatActivity(),TextWatcher{
 
     private fun getID(): String
     {
-        var sharedPreferences=getSharedPreferences("Information", Context.MODE_PRIVATE)
-        return sharedPreferences.getString("user_id","").toString()
+        var sharedPreferences=getSharedPreferences(userProperties.FILE_NAME_SHARED_INFORMATION, Context.MODE_PRIVATE)
+        return sharedPreferences.getString(userProperties.USER_ID,"").toString()
     }
 
     private fun savedIdToSharedPreferences(data:DataBaseEmergencyUser) {
 
-        var sharedPreferences=getSharedPreferences("Information", Context.MODE_PRIVATE)
+        var sharedPreferences=getSharedPreferences(userProperties.FILE_NAME_SHARED_INFORMATION, Context.MODE_PRIVATE)
         var editor=sharedPreferences.edit()
-        editor.putString("user_id",data.id)
-        editor.putString("user_personalID",data.personalID)
-        editor.putString("user_check",data.check)
-        editor.putString("user_name",data.name)
-        editor.putString("user_mothername",data.mothername)
-        editor.putString("user_birthday",data.birthday)
-        editor.putString("user_governorate",data.governorate)
-        editor.putString("user_gender",data.gender)
-        editor.putString("user_password",data.password)
-        editor.putString("user_phone",data.phone)
+
+
+        editor.putString(userProperties.USER_ID,data.id)
+        editor.putString(userProperties.USER_PERSONAL_ID,data.personalID)
+        editor.putString(userProperties.USER_CHECK,data.check)
+        editor.putString(userProperties.USER_NAME,data.name)
+        editor.putString(userProperties.USER_MOTHERNAME,data.mothername)
+        editor.putString(userProperties.USER_BIRTHDAY,data.birthday)
+        editor.putString(userProperties.USER_GOVERNORATE,data.governorate)
+        editor.putString(userProperties.USER_GENDER,data.gender)
+        editor.putString(userProperties.USER_PASSWORD,data.password)
+        editor.putString(userProperties.USER_PHONE,data.phone)
 
 
         editor.commit()
@@ -129,6 +129,36 @@ class Login:AppCompatActivity(),TextWatcher{
         var database=Firebase.database
         mRefEmergencyUser=database.getReference("Emergency_user")
 
+    }
+    private fun goToSignUpActivity()
+    {
+        val goToSignUp = Intent(this, SignUp::class.java)
+        startActivity(goToSignUp)
+    }
+    private fun goToMainActivity()
+    {
+        var goToMain = Intent (this , Main :: class.java)
+        startActivity(goToMain)
+    }
+    private fun messageDialogToSignUp()
+    {
+        var alertBuilder=AlertDialog.Builder(this)
+        alertBuilder.setTitle(R.string.message_not_found)
+        alertBuilder.setMessage(R.string.message_signup)
+
+        alertBuilder.setPositiveButton(R.string.btn_signup_alertdialog) { dialogInterface, which->
+
+            goToSignUpActivity()
+
+        }// end positive button
+
+        alertBuilder.setNeutralButton(R.string.btn_cancel_alertdialog,null)
+        var alert=alertBuilder.create()
+        alert.show()
+        alert.getButton(AlertDialog.BUTTON_NEUTRAL).setOnClickListener()
+        {
+            alert.cancel()
+        }
     }
     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int)
     {

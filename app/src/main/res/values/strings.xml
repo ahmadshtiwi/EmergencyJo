@@ -20,6 +20,11 @@
     <string name="message_check_number_empty">Enter Qualifier Number</string>
     <string name="message_strong_password">Please Enter Strong Password</string>
     <string name="message_match_password">Password Not Match</string>
+    <string name="message_signup">Please sign Up</string>
+    <string name="btn_signup_alertdialog">Sign Up</string>
+    <string name="message_not_found">Not Found</string>
+    <string name="btn_cancel_alertdialog">Sign Up</string>
+
     <string name="btn_request">Request</string>
     <string name="direct_call">Direct Call 911</string>
     <string name="ambulance">Ambulance</string>

@@ -19,6 +19,7 @@ class SignUp : AppCompatActivity() {
     var mRefVCivilAffairs:DatabaseReference?=null
     var position:Int=-1
     var dataCivilAffairs:ArrayList<DataBaseCivilAffairs>?=null
+    var userProperties=UserProperties()
 
     private fun showComponents() {
         tv_name_signup_id.visibility = View.VISIBLE
@@ -54,7 +55,7 @@ class SignUp : AppCompatActivity() {
         et_phone_number_layout.visibility=View.INVISIBLE
         et_re_password_layout.visibility=View.INVISIBLE
     }
-
+/*********************************** on Create *****************************************************/
     //Main class
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -149,19 +150,19 @@ class SignUp : AppCompatActivity() {
 
     private fun savedIdToSharedPreferences(data:DataBaseEmergencyUser) {
 
-        var sharedPreferences=getSharedPreferences("Information", Context.MODE_PRIVATE)
+        var sharedPreferences=getSharedPreferences(userProperties.FILE_NAME_SHARED_INFORMATION, Context.MODE_PRIVATE)
         var editor=sharedPreferences.edit()
-        editor.putString("user_id",data.id)
-        editor.putString("user_personalID",data.personalID)
-        editor.putString("user_check",data.check)
-        editor.putString("user_name",data.name)
-        editor.putString("user_mothername",data.mothername)
-        editor.putString("user_birthday",data.birthday)
-        editor.putString("user_governorate",data.governorate)
-        editor.putString("user_gender",data.gender)
-        editor.putString("user_password",data.password)
-        editor.putString("user_phone",data.phone)
 
+        editor.putString(userProperties.USER_ID,data.id)
+        editor.putString(userProperties.USER_PERSONAL_ID,data.personalID)
+        editor.putString(userProperties.USER_CHECK,data.check)
+        editor.putString(userProperties.USER_NAME,data.name)
+        editor.putString(userProperties.USER_MOTHERNAME,data.mothername)
+        editor.putString(userProperties.USER_BIRTHDAY,data.birthday)
+        editor.putString(userProperties.USER_GOVERNORATE,data.governorate)
+        editor.putString(userProperties.USER_GENDER,data.gender)
+        editor.putString(userProperties.USER_PASSWORD,data.password)
+        editor.putString(userProperties.USER_PHONE,data.phone)
 
         editor.commit()
     }

@@ -7,15 +7,30 @@
     android:layout_height="match_parent"
     tools:context=".Main">
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/MY_MAP"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_stroke_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/header_id"
+            android:layout_marginStart="33dp"
+            android:layout_marginTop="50dp"
+            android:layout_toEndOf="@+id/tv_accident_id"
+            android:background="@drawable/bg_button_master"
+            android:fontFamily="@font/convergence"
+            android:onClick="setDescription"
+            android:paddingStart="10dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="5dp"
+            android:text="Stroke"
+            android:textColor="@color/text2"
+            android:textSize="24sp"
+            android:textStyle="italic" />
 
         <include
             android:id="@+id/header_id"
@@ -25,45 +40,102 @@
             android:layout_alignParentTop="true"
             android:layout_marginTop="0dp" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+        <Button
+            android:id="@+id/btn_map_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/et_descrption_box_id"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="104dp"
+            android:layout_marginEnd="40dp"
+            android:background="@drawable/bg_button_master"
+            android:fontFamily="@font/convergence"
+            android:text="Map"
+            android:textAllCaps="false"
+            android:textColor="@color/text2"
+            android:textSize="@dimen/text_size_button"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btn_direct_call_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/et_descrption_box_id"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="103dp"
+            android:background="@drawable/bg_description_box"
+            android:fontFamily="@font/convergence"
+            android:text="Call 911"
+            android:textAllCaps="false"
+            android:textColor="@color/text1"
+            android:textSize="@dimen/text_size_button"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/et_descrption_box_id"
+            android:layout_width="353dp"
+            android:layout_height="194dp"
             android:layout_below="@+id/header_id"
-            android:layout_marginTop="428dp"
-            android:background="#DEDEDE">
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="148dp"
+            android:background="@drawable/bg_description_box"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Set Description About  the Action"
+            android:inputType="textMultiLine" />
 
-            <Button
-                android:id="@+id/Request_btn_Map"
-                android:layout_width="91dp"
-                android:layout_height="35dp"
-                android:layout_alignParentEnd="true"
-                android:background="@drawable/bg_button_master"
-                android:enabled="false"
-                android:fontFamily="@font/convergence"
-                android:text="@string/request_Map"
-                android:textAllCaps="false"
-                android:textColor="@color/text2"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.939"
-                tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
+        <TextView
+            android:id="@+id/tv_fire_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/header_id"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="37dp"
+            android:layout_marginTop="53dp"
+            android:background="@drawable/bg_button_master"
+            android:fontFamily="@font/convergence"
+            android:onClick="setDescription"
+            android:paddingStart="10dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="5dp"
+            android:text="Fire"
+            android:textColor="@color/text2"
+            android:textSize="24sp"
+            android:textStyle="italic" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tv_accident_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/header_id"
+            android:layout_marginStart="41dp"
+            android:layout_marginTop="50dp"
+            android:layout_toEndOf="@+id/tv_fire_id"
+            android:background="@drawable/bg_button_master"
+            android:fontFamily="@font/convergence"
+            android:onClick="setDescription"
+            android:paddingStart="10dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="5dp"
+            android:text="Accident"
+            android:textColor="@color/text2"
+            android:textSize="24sp"
+            android:textStyle="italic" />
 
 
     </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_side_list_id"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/header_side_list"
         app:menu="@menu/side_list_navigation"
 
         />
+
 </androidx.drawerlayout.widget.DrawerLayout>
