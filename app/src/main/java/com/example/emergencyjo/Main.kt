@@ -60,7 +60,7 @@ lateinit var headerView:View
 
         btn_map_id.setOnClickListener()
         {
-            intent=Intent(this,MapsActivity::class.java)
+            intent=Intent(this,MapActivity::class.java)
             startActivity(intent)
         }
 
@@ -122,6 +122,22 @@ lateinit var headerView:View
             }
 
         }
+        when(item){
+            R.id.safety_Instructions_side_list_id->{
+                var goToSaftey=Intent(this,safetyinstructions::class.java)
+                startActivity(goToSaftey)
+                finish()
+            }
+        }
+            when(item){
+                R.id.setting_side_list_id->{
+                    var goToSetting = Intent (this,UserSetting::class.java)
+                    startActivity(goToSetting)
+                    finish()
+                }
+            }
+
+
         Toast.makeText(this, "$item", Toast.LENGTH_SHORT).show()
         closeDrawer()
         return true
