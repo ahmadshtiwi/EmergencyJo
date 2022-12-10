@@ -18,6 +18,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EmergencyJo"
         tools:targetApi="31">
+        <activity
+            android:name=".MainActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
@@ -31,7 +38,7 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyBsxSVdH-D372i64ILWijNZX1fzTNGBOzA" />
+            android:value="YOUR_API_KEY" />
 
         <activity
             android:name=".MapsActivity"
@@ -68,6 +75,8 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <receiver android:name=".GeofenceReceiver" />
     </application>
 
 </manifest>

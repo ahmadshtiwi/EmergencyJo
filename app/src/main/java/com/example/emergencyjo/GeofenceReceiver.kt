@@ -5,8 +5,6 @@ import android.content.Context
 import android.content.Intent
 import com.google.android.gms.location.Geofence
 import com.google.android.gms.location.GeofencingEvent
-import com.google.android.gms.maps.model.LatLng
-import com.google.firebase.FirebaseApp
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -31,7 +29,7 @@ class GeofenceReceiver : BroadcastReceiver() {
                 }
 
                 val firebase = Firebase.database
-                val reference = firebase.getReference("reminders")
+                val reference = firebase.getReference("UserLocation")
                 val reminderListener = object : ValueEventListener{
                     override fun onDataChange(snapshot: DataSnapshot) {
                         val reminder = snapshot.getValue<Reminder>()

@@ -11,14 +11,12 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
-import android.location.Location
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
-import androidx.core.app.JobIntentService
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import com.google.android.gms.location.*
@@ -66,13 +64,16 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
+        //Zoom Function
         map.uiSettings.isZoomControlsEnabled = true
 
+        //Get Premission From User
         if (!isLocationPermissionGranted()) {
             val permissions = mutableListOf(
                 Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.ACCESS_COARSE_LOCATION
             )
+            //CHECK SDK VERSION TO SUPPORT BACKGROUND LOCATION
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 permissions.add(Manifest.permission.ACCESS_BACKGROUND_LOCATION)
             }
@@ -118,7 +119,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         setLongClick(map)
         setPoiClick(map)
     }
-
+//to get position
     private fun setPoiClick(map: GoogleMap) {
         map.setOnPoiClickListener { poi ->
             map.addMarker(
@@ -131,6 +132,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
+    //Long Press To SaveLocation we can change it to any press
     private fun setLongClick(map: GoogleMap) {
         map.setOnMapLongClickListener { latlng ->
 
@@ -148,7 +150,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             map.moveCamera(CameraUpdateFactory.newLatLngZoom(latlng, CAMERA_ZOOM_LEVEL))
 
             val database = Firebase.database
-            val reference = database.getReference("UsersLocation")
+            val reference = database.getReference("UserLocation")
             val key = reference.push().key
             if (key != null) {
                 val reminder = Reminder(key, latlng.latitude, latlng.longitude)
@@ -158,6 +160,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
+    //Circle around the user
     private fun createGeoFence(location: LatLng, key: String, geofencingClient: GeofencingClient) {
         val geofence = Geofence.Builder()
             .setRequestId(GEOFENCE_ID)
@@ -198,7 +201,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             geofencingClient.addGeofences(geofenceRequest, pendingIntent)
         }
     }
-
+// Location Premission
     private fun isLocationPermissionGranted() : Boolean {
         return ContextCompat.checkSelfPermission(
             this, Manifest.permission.ACCESS_FINE_LOCATION
@@ -206,7 +209,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             applicationContext, Manifest.permission.ACCESS_COARSE_LOCATION
         ) == PackageManager.PERMISSION_GRANTED
     }
-
+//Locatoin Request
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -259,7 +262,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             }
         }
     }
-
+//Remove circle around the user
     companion object {
         fun removeGeofences(context: Context, triggeringGeofenceList: MutableList<Geofence>) {
             val geofenceIdList = mutableListOf<String>()
@@ -299,7 +302,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             notificationManager.notify(notificationId, notificationBuilder.build())
         }
     }
-
+//Notification Time and services
     private fun scheduleJob() {
         val componentName = ComponentName(this, ReminderJobService::class.java)
         val info = JobInfo.Builder(321, componentName)
@@ -318,7 +321,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             scheduleJob()
         }
     }
-
+// But in button to cancel the location and notification scheduler
     private fun cancelJob() {
         val scheduler = getSystemService(JOB_SCHEDULER_SERVICE) as JobScheduler
         scheduler.cancel(321)
