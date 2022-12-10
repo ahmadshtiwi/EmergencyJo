@@ -17,6 +17,7 @@ import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.activity_map.*
 
 class MapActivity : AppCompatActivity() ,OnMapReadyCallback , GoogleMap.OnMarkerClickListener{
 
@@ -58,18 +59,20 @@ class MapActivity : AppCompatActivity() ,OnMapReadyCallback , GoogleMap.OnMarker
         fusedLocationProviderClient.lastLocation.addOnSuccessListener(this) { location ->
             if(location != null) {
                 lastlocation = location
-                val currentLatLong = LatLng(location.latitude,location.longitude)
+                    val currentLatLong = LatLng(location.latitude, location.longitude)
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLong, 12f))
+               RequestLocation.setOnClickListener {
                 placeMarkerOnMap(currentLatLong)
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLong,12f))
                 val key = reference.push().key
-                if(key != null){
-                    val reminder = Reminder(key, location.latitude, location.longitude)
-                    reference.child(key).setValue(reminder)
+                    if (key != null) {
+                        val reminder = Reminder(key, location.latitude, location.longitude)
+                        reference.child(key).setValue(reminder)
+
                 }
+               }
             }
         }
     }
-
     private fun placeMarkerOnMap(currentLatLong: LatLng) {
 
         val markerOptions = MarkerOptions().position(currentLatLong)
