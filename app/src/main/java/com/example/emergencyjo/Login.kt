@@ -1,19 +1,15 @@
 package com.example.emergencyjo
 
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import com.example.emergencyjo.databinding.ActivityLoginBinding
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
-import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -64,7 +60,7 @@ class Login:AppCompatActivity(),TextWatcher{
     override fun onStart() {
         super.onStart()
 
-        signup_button_id.setOnClickListener() // Signup in button { use intent to go Sign Up activity }
+        direct_call_login_button_id.setOnClickListener() // Signup in button { use intent to go Sign Up activity }
         {
           goToSignUpActivity()
         }//end signup button
@@ -95,6 +91,11 @@ class Login:AppCompatActivity(),TextWatcher{
             } // end else
 
         }
+    direct_call_login_button_id.setOnClickListener()
+    {
+        var goToCall =Intent(Intent.ACTION_DIAL, Uri.parse("tel:911"))
+        startActivity(goToCall)
+    }
 
     }
 

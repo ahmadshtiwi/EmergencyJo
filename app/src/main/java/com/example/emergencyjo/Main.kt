@@ -28,6 +28,7 @@ lateinit var userName:String
 lateinit var toolbar:Toolbar
 lateinit var mRefData:DatabaseReference
 lateinit var headerView:View
+lateinit var userProperties:UserProperties
 //lateinit var objDataBaseEmergencyUser: DataBaseEmergencyUser
     var name:String?=null
 
@@ -60,8 +61,16 @@ lateinit var headerView:View
 
         btn_map_id.setOnClickListener()
         {
+           if(et_descrption_box_id.text.toString().isNotEmpty()){
+               //savedIdToSharedPreferences()
             intent=Intent(this,MapActivity::class.java)
+               intent.putExtra("des",et_descrption_box_id.text.toString())
             startActivity(intent)
+           }
+            else
+           {
+               et_descrption_box_id.error="Set Descrption "
+           }
         }
 
         tv_fire_id.setOnClickListener()
@@ -172,7 +181,16 @@ private fun connectDataBase()
 
 }
 
-
+//    private fun savedIdToSharedPreferences() {
+//
+//        var sharedPreferences=getSharedPreferences(userProperties.FILE_NAME_SHARED_INFORMATION, Context.MODE_PRIVATE)
+//        var editor=sharedPreferences.edit()
+//
+//
+//        editor.putString(userProperties.USER_DES,et_descrption_box_id.text.toString())
+//
+//        editor.commit()
+//    }
 //    fun setDescription(view: View)
 //    {
 //

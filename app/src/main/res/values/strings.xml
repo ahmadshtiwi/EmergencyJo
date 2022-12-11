@@ -23,10 +23,10 @@
     <string name="message_signup">Please sign Up</string>
     <string name="btn_signup_alertdialog">Sign Up</string>
     <string name="message_not_found">Not Found</string>
-    <string name="btn_cancel_alertdialog">Sign Up</string>
+    <string name="btn_cancel_alertdialog">Cancel</string>
 
     <string name="btn_request">Request</string>
-    <string name="direct_call">Direct Call 911</string>
+    <string name="direct_call">Call 911</string>
     <string name="ambulance">Ambulance</string>
     <string name="fire_fighter">Fire Fighter</string>
     <string name="police">Police</string>

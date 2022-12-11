@@ -13,6 +13,7 @@ package com.example.emergencyjo
      val USER_GENDER:String="user_gender",
      val USER_PASSWORD:String="user_password",
      val USER_PHONE:String="user_phone",
-     val FILE_NAME_SHARED_INFORMATION:String="Information"
+     val FILE_NAME_SHARED_INFORMATION:String="Information",
+ //val USER_DES:String="user_des"
 )
  {}

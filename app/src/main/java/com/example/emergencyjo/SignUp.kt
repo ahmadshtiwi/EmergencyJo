@@ -70,7 +70,7 @@ class SignUp : AppCompatActivity() {
          mRefVCivilAffairs?.addValueEventListener(object:ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
 
-                for(d in snapshot.children!!)
+                for(d in snapshot.children)
                 {
                     var objData=d.getValue(DataBaseCivilAffairs::class.java)
                     dataCivilAffairs!!.add(objData!!)
