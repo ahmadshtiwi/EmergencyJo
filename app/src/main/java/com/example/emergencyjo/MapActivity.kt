@@ -80,7 +80,7 @@ class MapActivity : AppCompatActivity() ,OnMapReadyCallback , GoogleMap.OnMarker
                        val key = reference.push().key
                         if (key != null) {
 
-                        val reminder = Reminder(key, location.latitude, location.longitude,getInfo(userProperties.USER_PERSONAL_ID),getInfo(userProperties.USER_NAME),getInfo(userProperties.USER_PHONE))//,getInfo(userProperties.USER_DES))
+                        val reminder = Reminder(key, location.latitude, location.longitude,getInfo(userProperties.USER_PERSONAL_ID),getInfo(userProperties.USER_NAME),getInfo(userProperties.USER_PHONE),getInfo(userProperties.USER_DES))
                         reference.child(key).setValue(reminder)
                             finish()
                     }

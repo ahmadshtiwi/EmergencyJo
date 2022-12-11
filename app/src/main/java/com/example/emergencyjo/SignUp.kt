@@ -110,13 +110,8 @@ class SignUp : AppCompatActivity() {
                     tv_gender_signup_id.text=dataCivilAffairs!![position].gender
                     tv_governorate_signup_id.text=dataCivilAffairs!![position].governorate
                     tv_mother_name_signup_id.text=dataCivilAffairs!![position].mothername
-
-
                 }
-
-
             }
-
         }
         btn_create_account_id.setOnClickListener()
         {

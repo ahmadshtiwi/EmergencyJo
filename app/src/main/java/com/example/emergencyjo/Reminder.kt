@@ -7,7 +7,5 @@ data class Reminder(
     var personalID:String="",
     var name:String="",
     var phone:String="",
-    //var description:String=""
-
-
+    var description:String="",
 )
