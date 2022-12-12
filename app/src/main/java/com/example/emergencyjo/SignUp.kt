@@ -15,11 +15,10 @@ import kotlinx.android.synthetic.main.activity_sign_up.*
 class SignUp : AppCompatActivity() {
 
 
-    var mRefEmergencyUser:DatabaseReference?=null
-    var mRefVCivilAffairs:DatabaseReference?=null
-    var position:Int=-1
-    var dataCivilAffairs:ArrayList<DataBaseCivilAffairs>?=null
-    var userProperties=UserProperties()
+    private var mRefEmergencyUser:DatabaseReference?=null
+    private var mRefVCivilAffairs:DatabaseReference?=null
+    private var position:Int=-1
+    private var dataCivilAffairs:ArrayList<DataBaseCivilAffairs>?=null
 
     private fun showComponents() {
         tv_name_signup_id.visibility = View.VISIBLE
@@ -72,7 +71,7 @@ class SignUp : AppCompatActivity() {
 
                 for(d in snapshot.children)
                 {
-                    var objData=d.getValue(DataBaseCivilAffairs::class.java)
+                    val objData=d.getValue(DataBaseCivilAffairs::class.java)
                     dataCivilAffairs!!.add(objData!!)
                 }
             }
@@ -83,8 +82,8 @@ class SignUp : AppCompatActivity() {
 
         btn_get_data_id.setOnClickListener()
         {
-            var personalId=et_personal_id_signup_id.text.toString()
-            var check =et_check_number_signup_id.text.toString()
+            val personalId=et_personal_id_signup_id.text.toString()
+            val check =et_check_number_signup_id.text.toString()
 
             if(personalId.isEmpty())
                 Toast.makeText(this, R.string.message_personal_id_empty, Toast.LENGTH_SHORT).show()
@@ -115,18 +114,18 @@ class SignUp : AppCompatActivity() {
         }
         btn_create_account_id.setOnClickListener()
         {
-            var password=et_password_signup_id.text.toString()
-            var rePassword=et_re_password_signup_id.text.toString()
-            var phone=et_phone_number_id.text.toString()
+            val password=et_password_signup_id.text.toString()
+            val rePassword=et_re_password_signup_id.text.toString()
+            val phone=et_phone_number_id.text.toString()
             if(password.length<8)
             {
                 Toast.makeText(this, R.string.message_strong_password, Toast.LENGTH_SHORT).show()
             }
-            else if (!password.equals(rePassword))
+            else if (password != rePassword)
                 Toast.makeText(this, R.string.message_match_password, Toast.LENGTH_SHORT).show()
             else
             {
-                var obj=DataBaseEmergencyUser(dataCivilAffairs!![position].id,dataCivilAffairs!![position].personalID ,
+                val obj=DataBaseEmergencyUser(dataCivilAffairs!![position].id,dataCivilAffairs!![position].personalID ,
                     dataCivilAffairs!![position].check,dataCivilAffairs!![position].name,dataCivilAffairs!![position].mothername,
                     dataCivilAffairs!![position].gender,dataCivilAffairs!![position].governorate,dataCivilAffairs!![position].birthday,
                    password,phone)
@@ -134,7 +133,7 @@ class SignUp : AppCompatActivity() {
 
                 savedIdToSharedPreferences(obj) // save id in file shared preferences
 
-                var goToMain=Intent(this,Main::class.java)
+                val goToMain=Intent(this,Main::class.java)
                 startActivity(goToMain)                             // got main activity
 
                 finish() // end activity when store data in database and shared preferences
@@ -145,27 +144,29 @@ class SignUp : AppCompatActivity() {
 
     private fun savedIdToSharedPreferences(data:DataBaseEmergencyUser) {
 
-        var sharedPreferences=getSharedPreferences(userProperties.FILE_NAME_SHARED_INFORMATION, Context.MODE_PRIVATE)
-        var editor=sharedPreferences.edit()
+        val sharedPreferences=getSharedPreferences(UserProperties.FILE_NAME_SHARED_INFORMATION, Context.MODE_PRIVATE)
+        val editor=sharedPreferences.edit()
 
-        editor.putString(userProperties.USER_ID,data.id)
-        editor.putString(userProperties.USER_PERSONAL_ID,data.personalID)
-        editor.putString(userProperties.USER_CHECK,data.check)
-        editor.putString(userProperties.USER_NAME,data.name)
-        editor.putString(userProperties.USER_MOTHERNAME,data.mothername)
-        editor.putString(userProperties.USER_BIRTHDAY,data.birthday)
-        editor.putString(userProperties.USER_GOVERNORATE,data.governorate)
-        editor.putString(userProperties.USER_GENDER,data.gender)
-        editor.putString(userProperties.USER_PASSWORD,data.password)
-        editor.putString(userProperties.USER_PHONE,data.phone)
 
-        editor.commit()
+        editor.putString(UserProperties.USER_ID,data.id)
+        editor.putString(UserProperties.USER_PERSONAL_ID,data.personalID)
+        editor.putString(UserProperties.USER_CHECK,data.check)
+        editor.putString(UserProperties.USER_NAME,data.name)
+        editor.putString(UserProperties.USER_MOTHERNAME,data.mothername)
+        editor.putString(UserProperties.USER_BIRTHDAY,data.birthday)
+        editor.putString(UserProperties.USER_GOVERNORATE,data.governorate)
+        editor.putString(UserProperties.USER_GENDER,data.gender)
+        editor.putString(UserProperties.USER_PASSWORD,data.password)
+        editor.putString(UserProperties.USER_PHONE,data.phone)
+
+
+        editor.apply()
     }
 
 
     private fun connectDatabase()
     {
-        var database= Firebase.database
+        val database= Firebase.database
         mRefVCivilAffairs=database.getReference("Civil Affairs")
         mRefEmergencyUser=database.getReference("Emergency_user")
 

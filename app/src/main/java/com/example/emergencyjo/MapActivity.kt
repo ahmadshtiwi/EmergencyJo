@@ -19,18 +19,15 @@ import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_map.*
 
 class MapActivity : AppCompatActivity() ,OnMapReadyCallback , GoogleMap.OnMarkerClickListener{
 
-    private var mapFragment : SupportMapFragment?= null
     private lateinit var mMap: GoogleMap
-    private lateinit var lastlocation : Location
+    private lateinit var lastLocation : Location
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private  var  database = Firebase.database
     private  var  reference = database.getReference("UserLocation")
-    var userProperties=UserProperties()
 
     companion object{
         private const val LOCATION_REQUEST_CODE = 1
@@ -55,24 +52,26 @@ class MapActivity : AppCompatActivity() ,OnMapReadyCallback , GoogleMap.OnMarker
     private fun setUpMap() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
             != PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
                 LOCATION_REQUEST_CODE)
             return
         }
         mMap.isMyLocationEnabled = true
         fusedLocationProviderClient.lastLocation.addOnSuccessListener(this) { location ->
             if(location != null) {
-                lastlocation = location
+                lastLocation = location
                     val currentLatLong = LatLng(location.latitude, location.longitude)
                     mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLong, 12f))
                RequestLocation.setOnClickListener {
 
 
-                   var alertBuilder=AlertDialog.Builder(this)
+                   val bundle: Bundle? =intent.extras
+                   val description:String= bundle?.get("description") as String
+                   val alertBuilder=AlertDialog.Builder(this)
                    alertBuilder.setMessage("Are You Sure To Request")
                    alertBuilder.setPositiveButton("Yes",null)
                    alertBuilder.setNegativeButton("No",null)
-                   var alert=alertBuilder.create()
+                   val alert=alertBuilder.create()
                    alert.show()
                    alert.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener()
                    {
@@ -80,7 +79,8 @@ class MapActivity : AppCompatActivity() ,OnMapReadyCallback , GoogleMap.OnMarker
                        val key = reference.push().key
                         if (key != null) {
 
-                        val reminder = Reminder(key, location.latitude, location.longitude,getInfo(userProperties.USER_PERSONAL_ID),getInfo(userProperties.USER_NAME),getInfo(userProperties.USER_PHONE),getInfo(userProperties.USER_DES))
+                        val reminder = Reminder(key, location.latitude, location.longitude,getInfo(UserProperties.USER_PERSONAL_ID),
+                            getInfo(UserProperties.USER_NAME),getInfo(UserProperties.USER_PHONE),description)
                         reference.child(key).setValue(reminder)
                             finish()
                     }
@@ -103,19 +103,9 @@ class MapActivity : AppCompatActivity() ,OnMapReadyCallback , GoogleMap.OnMarker
 
     private fun getInfo(data:String): String
     {
-        var sharedPreferences=getSharedPreferences(userProperties.FILE_NAME_SHARED_INFORMATION, Context.MODE_PRIVATE)
+        val sharedPreferences=getSharedPreferences(UserProperties.FILE_NAME_SHARED_INFORMATION, Context.MODE_PRIVATE)
         return sharedPreferences.getString(data,"").toString()
     }
-//    private fun getName(): String
-//    {
-//        var sharedPreferences=getSharedPreferences(userProperties.FILE_NAME_SHARED_INFORMATION, Context.MODE_PRIVATE)
-//        return sharedPreferences.getString(userProperties.USER_NAME,"").toString()
-//    }
-//    private fun getPhone(): String
-//    {
-//        var sharedPreferences=getSharedPreferences(userProperties.FILE_NAME_SHARED_INFORMATION, Context.MODE_PRIVATE)
-//        return sharedPreferences.getString(userProperties.USER_PHONE,"").toString()
-//    }
 
 
     override fun onMarkerClick(p0: Marker) = false

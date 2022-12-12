@@ -44,7 +44,7 @@
             android:id="@+id/btn_map_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/et_descrption_box_id"
+            android:layout_below="@+id/et_description_box_id"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="104dp"
             android:layout_marginEnd="40dp"
@@ -60,7 +60,7 @@
             android:id="@+id/btn_direct_call_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/et_descrption_box_id"
+            android:layout_below="@+id/et_description_box_id"
             android:layout_alignParentStart="true"
             android:layout_marginStart="32dp"
             android:layout_marginTop="103dp"
@@ -73,7 +73,7 @@
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/et_descrption_box_id"
+            android:id="@+id/et_description_box_id"
             android:layout_width="353dp"
             android:layout_height="194dp"
             android:layout_below="@+id/header_id"

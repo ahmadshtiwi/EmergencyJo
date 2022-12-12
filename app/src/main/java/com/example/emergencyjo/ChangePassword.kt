@@ -1,44 +1,50 @@
 package com.example.emergencyjo
 
-import android.content.Context
-import android.content.Intent
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.EditText
 import android.widget.Toast
-import com.google.firebase.auth.FirebaseAuth
+import androidx.appcompat.app.AlertDialog
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_change_password.*
-import kotlinx.android.synthetic.main.activity_sign_up.*
 
 
 class ChangePassword : AppCompatActivity() {
 
 
-    var mRefEmergencyUser: DatabaseReference?=null
-    var mRefVCivilAffairs: DatabaseReference?=null
-    var position:Int=-1
-    var dataCivilAffairs:ArrayList<DataBaseCivilAffairs>?=null
+    private var mRefEmergencyUser: DatabaseReference?=null
+    private var position:Int=-1
     var dataBaseEmergencyUser:ArrayList<DataBaseEmergencyUser>?=null
 
 
     private fun showComponents() {
 
-        et_password_layout_changepassword.visibility= View.VISIBLE
-        et_re_password_layout_changepassword.visibility= View.VISIBLE
+    et_password_id_changepassword.visibility=View.VISIBLE
+    et_re_password_layout_changepassword.visibility=View.VISIBLE
+    et_password_layout_changepassword.visibility=View.VISIBLE
+    et_re_password_layout_changepassword.visibility=View.VISIBLE
+    btn_change_password_changepassword_id.visibility=View.VISIBLE
+        lock_icon_changepassword_id.visibility=View.INVISIBLE
+
 
     }
     private fun hideComponents() {
 
-        et_password_layout.visibility=View.INVISIBLE
-        et_re_password_layout.visibility=View.INVISIBLE
-    }
+        et_password_id_changepassword.visibility=View.INVISIBLE
+        et_re_password_layout_changepassword.visibility=View.INVISIBLE
+        et_password_layout_changepassword.visibility=View.INVISIBLE
+        et_re_password_layout_changepassword.visibility=View.INVISIBLE
+        btn_change_password_changepassword_id.visibility=View.INVISIBLE
+        lock_icon_changepassword_id.visibility=View.INVISIBLE
+
+}
 
     /*********************************** on Create *****************************************************/
     //Main class
@@ -48,69 +54,127 @@ class ChangePassword : AppCompatActivity() {
         hideComponents()
         connectDatabase()
 
-        dataCivilAffairs = ArrayList()
         dataBaseEmergencyUser = ArrayList()
 
-        mRefVCivilAffairs?.addValueEventListener(object : ValueEventListener {
+        mRefEmergencyUser?.addValueEventListener(object :ValueEventListener
+        {
             override fun onDataChange(snapshot: DataSnapshot) {
 
-                for (d in snapshot.children) {
-                    var objData = d.getValue(DataBaseCivilAffairs::class.java)
-                    dataCivilAffairs!!.add(objData!!)
+                for(data in snapshot.children)
+                {
+                    dataBaseEmergencyUser?.add(data.getValue(DataBaseEmergencyUser::class.java)!!)
                 }
+
             }
 
             override fun onCancelled(error: DatabaseError) {}
 
         })
 
-        btn_compareinfromation_changepassword.setOnClickListener()
+        btn_check_information_changpassword_id.setOnClickListener()
         {
-            var personalId = et_personal_id_changepasswordcheck_id.text.toString()
-            var check = et_check_number_changepasswordcheck_id.text.toString()
-            if (personalId.isEmpty())
-                Toast.makeText(this, R.string.message_personal_id_empty, Toast.LENGTH_SHORT).show()
-            else if (check.isEmpty())
-                Toast.makeText(this, R.string.message_check_number_empty, Toast.LENGTH_SHORT).show()
-            else {
-                for (i in 0 until dataCivilAffairs!!.size) {
-                    if (dataCivilAffairs!![i].personalID == personalId) {
-                        position = i
+            if(!Expression.expPersonalID.matches(et_personal_id_changepasswordcheck_id.text))
+                showMessageError(et_personal_id_changepasswordcheck_id,"Enter Valid Personal ID")
+            else  if(!Expression.expCheck.matches(et_check_number_changepasswordcheck_id.text))
+                showMessageError(et_personal_id_changepasswordcheck_id,"Enter Valid Check Number")
+            else
+            {
+                for(index in 0 until dataBaseEmergencyUser!!.size )
+                {
+                    if(dataBaseEmergencyUser!![index].personalID==et_personal_id_changepasswordcheck_id.text.toString())
+                    {
+                        position=index
                         break
                     }
                 }
-                if (dataCivilAffairs!![position].check == check) {
+                if(dataBaseEmergencyUser!![position].check==et_check_number_changepasswordcheck_id.text.toString())
+                {
                     showComponents()
+                }
+                else
+                {
+                    showAlert()
                 }
             }
         }
-        btn_change_password_changepassword.setOnClickListener {
-           var password = et_password_id_changepassword.text.toString()
-           var rePassword = et_re_password_changepassword.text.toString()
-            if(password.length<8)
+
+        btn_change_password_changepassword_id.setOnClickListener()
+        {
+            if(!Expression.expPassword.matches(et_password_id_changepassword.text.toString()))
             {
-                Toast.makeText(this, R.string.message_strong_password, Toast.LENGTH_SHORT).show()
-           }
-            else if (!password.equals(rePassword))
-                Toast.makeText(this, R.string.message_match_password, Toast.LENGTH_SHORT).show()
+                showMessageError(et_password_id_changepassword,"Enter a Password content (8>,1,A,a,$)")
+            }
+            else if(et_password_id_changepassword.text.toString()!=et_re_password_changepassword.text.toString())
+            {
+                et_re_password_layout_changepassword.error="Not Match"
+            }
             else
             {
-                updatepassword(password)
-                Toast.makeText(this,"Password Changed",Toast.LENGTH_SHORT)
-                finish() // end activity when store data in database and shared preferences
+                showAlertChange()
+
+
             }
         }
+
     }
-
-   private fun updatepassword(password: String) {
-
-       mRefEmergencyUser?.child("password")?.setValue(password);
-
-   }
 
     private fun connectDatabase() {
-        var database= Firebase.database
-        mRefVCivilAffairs=database.getReference("Civil Affairs")
+        val database=Firebase.database
         mRefEmergencyUser=database.getReference("Emergency_user")
     }
+    private fun showMessageError(item: EditText, message:String)
+    {
+        item.error=message
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+
+    }
+    private fun showAlert()
+    {
+        val alertBuilder= AlertDialog.Builder(this)
+        alertBuilder.setMessage("Wrong Information")
+        alertBuilder.setPositiveButton("Ok",null)
+        val alert=alertBuilder.create()
+        alert.show()
+        alert.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener()
+        {
+            alert.dismiss()
+        }
+    }
+    private fun showAlertChange()
+    {
+        val alertBuilder= AlertDialog.Builder(this)
+        alertBuilder.setMessage("Are You sure to change password")
+        alertBuilder.setPositiveButton("Yes",null)
+        alertBuilder.setNegativeButton("No",null)
+
+        val alert=alertBuilder.create()
+        alert.show()
+        alert.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener()
+        {
+            mRefEmergencyUser?.child(et_personal_id_changepasswordcheck_id.text.toString())?.setValue(
+                DataBaseEmergencyUser(
+                    dataBaseEmergencyUser!![position].id,
+                    dataBaseEmergencyUser!![position].personalID,
+                    dataBaseEmergencyUser!![position].check,
+                    dataBaseEmergencyUser!![position].name,
+                    dataBaseEmergencyUser!![position].mothername,
+                    dataBaseEmergencyUser!![position].gender,
+                    dataBaseEmergencyUser!![position].governorate,
+                    dataBaseEmergencyUser!![position].birthday,
+                    et_password_id_changepassword.text.toString(),
+                    dataBaseEmergencyUser!![position].phone
+
+                )
+            )
+            hideComponents()
+            alert.dismiss()
+        }
+        alert.getButton(AlertDialog.BUTTON_NEGATIVE).setOnClickListener()
+        {
+            alert.dismiss()
+        }
+
+
+    }
+
 }

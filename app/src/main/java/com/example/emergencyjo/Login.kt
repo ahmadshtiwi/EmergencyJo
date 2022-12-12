@@ -19,7 +19,6 @@ class Login:AppCompatActivity(),TextWatcher{
     private var mRefEmergencyUser: DatabaseReference?=null
     private var position:Int?=-1
 
-    var userProperties=UserProperties()
 
 
 /******************************* on create ***************************************************/
@@ -28,7 +27,7 @@ class Login:AppCompatActivity(),TextWatcher{
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-         var test=getID()
+         val test=getID()
          if(test.length==10)
          {
              goToMainActivity()
@@ -67,8 +66,8 @@ class Login:AppCompatActivity(),TextWatcher{
 
         login_button_id.setOnClickListener()
         {
-            var personalID = et_personal_id_login_id.text.toString()
-            var password = et_password_login_id.text.toString()
+            val personalID = et_personal_id_login_id.text.toString()
+            val password = et_password_login_id.text.toString()
 
             for (data in 0 until dataLogin.size) {      // get data from array list and check id found
 
@@ -93,7 +92,7 @@ class Login:AppCompatActivity(),TextWatcher{
         }
     direct_call_login_button_id.setOnClickListener()
     {
-        var goToCall =Intent(Intent.ACTION_DIAL, Uri.parse("tel:911"))
+        val goToCall =Intent(Intent.ACTION_DIAL, Uri.parse("tel:911"))
         startActivity(goToCall)
     }
 
@@ -101,33 +100,33 @@ class Login:AppCompatActivity(),TextWatcher{
 
     private fun getID(): String
     {
-        var sharedPreferences=getSharedPreferences(userProperties.FILE_NAME_SHARED_INFORMATION, Context.MODE_PRIVATE)
-        return sharedPreferences.getString(userProperties.USER_ID,"").toString()
+        val sharedPreferences=getSharedPreferences("Information", Context.MODE_PRIVATE)
+        return sharedPreferences.getString("user_id","").toString()
     }
 
     private fun savedIdToSharedPreferences(data:DataBaseEmergencyUser) {
 
-        var sharedPreferences=getSharedPreferences(userProperties.FILE_NAME_SHARED_INFORMATION, Context.MODE_PRIVATE)
-        var editor=sharedPreferences.edit()
+        val sharedPreferences=getSharedPreferences(UserProperties.FILE_NAME_SHARED_INFORMATION, Context.MODE_PRIVATE)
+        val editor=sharedPreferences.edit()
 
 
-        editor.putString(userProperties.USER_ID,data.id)
-        editor.putString(userProperties.USER_PERSONAL_ID,data.personalID)
-        editor.putString(userProperties.USER_CHECK,data.check)
-        editor.putString(userProperties.USER_NAME,data.name)
-        editor.putString(userProperties.USER_MOTHERNAME,data.mothername)
-        editor.putString(userProperties.USER_BIRTHDAY,data.birthday)
-        editor.putString(userProperties.USER_GOVERNORATE,data.governorate)
-        editor.putString(userProperties.USER_GENDER,data.gender)
-        editor.putString(userProperties.USER_PASSWORD,data.password)
-        editor.putString(userProperties.USER_PHONE,data.phone)
+        editor.putString(UserProperties.USER_ID,data.id)
+        editor.putString(UserProperties.USER_PERSONAL_ID,data.personalID)
+        editor.putString(UserProperties.USER_CHECK,data.check)
+        editor.putString(UserProperties.USER_NAME,data.name)
+        editor.putString(UserProperties.USER_MOTHERNAME,data.mothername)
+        editor.putString(UserProperties.USER_BIRTHDAY,data.birthday)
+        editor.putString(UserProperties.USER_GOVERNORATE,data.governorate)
+        editor.putString(UserProperties.USER_GENDER,data.gender)
+        editor.putString(UserProperties.USER_PASSWORD,data.password)
+        editor.putString(UserProperties.USER_PHONE,data.phone)
 
 
-        editor.commit()
+        editor.apply()
     }
     private fun connectDataBase()
     {
-        var database=Firebase.database
+        val database=Firebase.database
         mRefEmergencyUser=database.getReference("Emergency_user")
 
     }
@@ -138,23 +137,23 @@ class Login:AppCompatActivity(),TextWatcher{
     }
     private fun goToMainActivity()
     {
-        var goToMain = Intent (this , Main :: class.java)
+        val goToMain = Intent (this , Main :: class.java)
         startActivity(goToMain)
     }
     private fun messageDialogToSignUp()
     {
-        var alertBuilder=AlertDialog.Builder(this)
+        val alertBuilder=AlertDialog.Builder(this)
         alertBuilder.setTitle(R.string.message_not_found)
         alertBuilder.setMessage(R.string.message_signup)
 
-        alertBuilder.setPositiveButton(R.string.btn_signup_alertdialog) { dialogInterface, which->
+        alertBuilder.setPositiveButton(R.string.btn_signup_alertdialog) { _, _ ->
 
             goToSignUpActivity()
 
         }// end positive button
 
         alertBuilder.setNeutralButton(R.string.btn_cancel_alertdialog,null)
-        var alert=alertBuilder.create()
+        val alert=alertBuilder.create()
         alert.show()
         alert.getButton(AlertDialog.BUTTON_NEUTRAL).setOnClickListener()
         {

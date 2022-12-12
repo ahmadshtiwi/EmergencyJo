@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
@@ -24,13 +23,11 @@ class Main : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
 
 
 
-lateinit var userName:String
-lateinit var toolbar:Toolbar
-lateinit var mRefData:DatabaseReference
-lateinit var headerView:View
-lateinit var userProperties:UserProperties
+private lateinit var userName:String
+private lateinit var toolbar:Toolbar
+private lateinit var mRefData:DatabaseReference
+private lateinit var headerView:View
 
-//lateinit var objDataBaseEmergencyUser: DataBaseEmergencyUser
     var name:String?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,7 +36,7 @@ lateinit var userProperties:UserProperties
 
 
 
-        toolbar = findViewById<Toolbar>(R.id.header_id)
+        toolbar = findViewById(R.id.header_id)
 
         setSupportActionBar(toolbar)
         supportActionBar?.title = ""
@@ -58,16 +55,17 @@ lateinit var userProperties:UserProperties
 
         btn_map_id.setOnClickListener()
         {
-            if(et_descrption_box_id.text.toString().isNotEmpty()){
+            if(et_description_box_id.text.toString().isNotEmpty()){
 
-                intent.putExtra("des",et_descrption_box_id.text.toString())
+
+
                 intent=Intent(this,MapActivity::class.java)
+                intent.putExtra("description",et_description_box_id.text.toString())
                startActivity(intent)
-                //savedIdToSharedPreferences()
             }
             else
            {
-               et_descrption_box_id.error="Set Descrption "
+               et_description_box_id.error="Set Description "
            }
 
 
@@ -75,23 +73,23 @@ lateinit var userProperties:UserProperties
 
         tv_fire_id.setOnClickListener()
         {
-            var fire=tv_fire_id.text.toString()
-            et_descrption_box_id.setText(fire)
+            val fire=tv_fire_id.text.toString()
+            et_description_box_id.setText(fire)
         }
         tv_accident_id.setOnClickListener()
         {
-            var accedent=tv_accident_id.text.toString()
-            et_descrption_box_id.setText(accedent)
+            val accident=tv_accident_id.text.toString()
+            et_description_box_id.setText(accident)
         }
         tv_stroke_id.setOnClickListener()
         {
-            var stroke=tv_stroke_id.text.toString()
-            et_descrption_box_id.setText(stroke)
+            val stroke=tv_stroke_id.text.toString()
+            et_description_box_id.setText(stroke)
 
         }
         btn_direct_call_id.setOnClickListener()
         {
-            var goToCall =Intent(Intent.ACTION_DIAL, Uri.parse("tel:911"))
+            val goToCall =Intent(Intent.ACTION_DIAL, Uri.parse("tel:911"))
             startActivity(goToCall)
         }
 
@@ -107,12 +105,12 @@ lateinit var userProperties:UserProperties
     @JvmName("getName1")
     private fun getName(): String
     {
-        var sharedPreferences=getSharedPreferences("Information", Context.MODE_PRIVATE)
-        return sharedPreferences.getString("user_name","").toString()
+        val sharedPreferences=getSharedPreferences(UserProperties.FILE_NAME_SHARED_INFORMATION, Context.MODE_PRIVATE)
+        return sharedPreferences.getString(UserProperties.USER_NAME,"").toString()
     }
     private fun connectActionbar()
     {
-        var actionToggle=ActionBarDrawerToggle(this,drawer_main_id,toolbar,R.string.drawer_open,R.string.drawer_close)
+        val actionToggle=ActionBarDrawerToggle(this,drawer_main_id,toolbar,R.string.drawer_open,R.string.drawer_close)
         drawer_main_id.addDrawerListener(actionToggle)
         actionToggle.syncState()
         nav_side_list_id.setNavigationItemSelectedListener(this)
@@ -120,40 +118,37 @@ lateinit var userProperties:UserProperties
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
 
-        var item=item.itemId
-        when(item)
-        {
-            R.id.logout_side_list_id->{
+        when (item.itemId) {
+
+
+            R.id.logout_side_list_id -> {
                 editIdToSharedPreferences()
-            var goToLogin=Intent(this,Login::class.java)
+                val goToLogin = Intent(this, Login::class.java)
                 startActivity(goToLogin)
                 finish()
             }
 
-        }
-        when(item){
-            R.id.safety_Instructions_side_list_id->{
-                var goToSaftey=Intent(this,safetyinstructions::class.java)
-                startActivity(goToSaftey)
+
+            R.id.safety_Instructions_side_list_id -> {
+                val goToSafety = Intent(this, SafetyInstructions::class.java)
+                startActivity(goToSafety)
                 finish()
             }
-        }
-            when(item){
-                R.id.setting_side_list_id->{
-                    var goToSetting = Intent (this,UserSetting::class.java)
-                    startActivity(goToSetting)
-                    finish()
-                }
+
+            R.id.setting_side_list_id -> {
+                val goToSetting = Intent(this, UserSetting::class.java)
+                startActivity(goToSetting)
+                finish()
             }
-        when (item) {
+
             R.id.home_side_list_id -> {
-                var goToMain = Intent(this, Main::class.java)
+                val goToMain = Intent(this, Main::class.java)
                 startActivity(goToMain)
                 finish()
             }
         }
 
-        Toast.makeText(this, "$item", Toast.LENGTH_SHORT).show()
+        //Toast.makeText(this, "$item", Toast.LENGTH_SHORT).show()
         closeDrawer()
         return true
     }
@@ -172,36 +167,21 @@ lateinit var userProperties:UserProperties
     }
     private fun editIdToSharedPreferences() {
 
-        var sharedPreferences=getSharedPreferences("Information", Context.MODE_PRIVATE)
-        var editor=sharedPreferences.edit()
-        editor.putString("user_id","0")
+        val sharedPreferences=getSharedPreferences(UserProperties.FILE_NAME_SHARED_INFORMATION, Context.MODE_PRIVATE)
+        val editor=sharedPreferences.edit()
+        editor.putString(UserProperties.USER_ID,"0")
 
 
 
-        editor.commit()
+        editor.apply()
     }
 private fun connectDataBase()
 {
-    var database=Firebase.database
+    val database=Firebase.database
     mRefData=database.getReference("Emergency_user")
 
 }
 
-   private fun savedIdToSharedPreferences() {
 
-        var sharedPreferences=getSharedPreferences(userProperties.FILE_NAME_SHARED_INFORMATION, Context.MODE_PRIVATE)
-        var editor=sharedPreferences.edit()
-
-
-        editor.putString(userProperties.USER_DES,et_descrption_box_id.text.toString())
-
-        editor.commit()
-    }
-//    fun setDescription(view: View)
-//    {
-//
-//
-//
-//    }
 
 }
