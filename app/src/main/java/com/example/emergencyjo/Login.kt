@@ -60,9 +60,9 @@ class Login:AppCompatActivity(),TextWatcher{
     override fun onStart() {
         super.onStart()
 
-        direct_call_login_button_id.setOnClickListener() // Signup in button { use intent to go Sign Up activity }
+    signup_button_id.setOnClickListener() // Signup in button { use intent to go Sign Up activity }
         {
-          goToSignUpActivity()
+            goToSignUpActivity()
         }//end signup button
 
         login_button_id.setOnClickListener()
@@ -85,7 +85,7 @@ class Login:AppCompatActivity(),TextWatcher{
                 else if (dataLogin[position!!].password == password) {
 
                 savedIdToSharedPreferences(dataLogin[position!!])           // save data in shared preferences
-               goToMainActivity()
+                goToMainActivity()
                 finish()
 
             } // end else
