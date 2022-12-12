@@ -137,7 +137,7 @@
             tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
         <Button
-            android:id="@+id/signup_button_id2"
+            android:id="@+id/signup_button_id"
             android:layout_width="@dimen/width_button"
             android:layout_height="@dimen/height_button"
             android:layout_below="@id/forget_password_id"

@@ -1,6 +1,4 @@
 package com.example.emergencyjo
-
-
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
