@@ -13,74 +13,55 @@ import com.google.android.material.navigation.NavigationView
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.activity_choosesafty.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.drawer_main_id
 import kotlinx.android.synthetic.main.activity_main.nav_side_list_id
-import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.activity_user_setting.*
 import kotlinx.android.synthetic.main.header_side_list.view.*
 
-class UserSetting : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class choosesafty : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-     private  lateinit var userName:String
-     private  lateinit var phoneNumber:String
-     private  lateinit var toolbar: Toolbar
-     private  lateinit var mRefData: DatabaseReference
-     private  lateinit var headerView:View
+    private lateinit var userName:String
+    private lateinit var toolbar: Toolbar
+    private  lateinit var mRefData: DatabaseReference
+    private lateinit var headerView: View
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_user_setting)
+        setContentView(R.layout.activity_choosesafty)
         toolbar = findViewById(R.id.header_id)
         setSupportActionBar(toolbar)
         supportActionBar?.title = ""
         connectActionbar()
         connectDataBase()
-
-        //Toast.makeText(applicationContext, "$userID", Toast.LENGTH_SHORT).show()
         userName=getName()
-        phoneNumber=getPhone()
         headerActionBar()
-        showInformation()
-        //Get Name And Phone Number
-        //Change password button
-        btn_change_password_setting.setOnClickListener {
-           val goToChangePassword = Intent(this,ChangePassword::class.java)
-            startActivity(goToChangePassword)
-        }
-        btn_change_phone_setting.setOnClickListener {
-            var gotochangephone = Intent(this,ChangePhone::class.java)
-            startActivity(gotochangephone)
+
+        btn_dealingwithfires.setOnClickListener {
+            var goToFire= Intent (this,firesafty::class.java)
+            startActivity(goToFire)
         }
 
+       // btn_medicalsaftey.setOnClickListener {
+       //
+       // }
+
+
     }
-//Store Name and phone
-    private fun showInformation() {
-        tv_name_setting_id.text=userName
-        tv_phone_setting_id.text=phoneNumber
-    }
-//Store Name in header
+
     private fun  headerActionBar()
     {
-
         headerView =nav_side_list_id.getHeaderView(0)
         headerView.name_user_side_list_id.text=userName
 
     }
-//Get Name
     @JvmName("getName1")
     private fun getName(): String
     {
         val sharedPreferences=getSharedPreferences(UserProperties.FILE_NAME_SHARED_INFORMATION, Context.MODE_PRIVATE)
         return sharedPreferences.getString(UserProperties.USER_NAME,"").toString()
-    }
-//Get Phone
-    @JvmName("getPhone")
-    private fun getPhone(): String
-    {
-        val sharedPreferences=getSharedPreferences(UserProperties.FILE_NAME_SHARED_INFORMATION, Context.MODE_PRIVATE)
-        return sharedPreferences.getString(UserProperties.USER_PHONE,"").toString()
     }
     private fun connectActionbar()
     {

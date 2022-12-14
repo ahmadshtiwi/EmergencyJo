@@ -2,6 +2,7 @@ package com.example.emergencyjo
 
 import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -27,7 +28,17 @@ class Login:AppCompatActivity(),TextWatcher{
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-         val test=getID()
+    //Check Internet
+    if ( ! isNetworkConnected() ) {
+
+        var goToDirectCall = Intent(this, DirectCall::class.java)
+        startActivity(goToDirectCall)
+
+
+    }
+
+
+    val test=getID()
          if(test.length==10)
          {
              goToMainActivity()
@@ -174,4 +185,11 @@ class Login:AppCompatActivity(),TextWatcher{
     {
 
     }//end afterTextChanged
+
+    //Check Internet
+    private fun isNetworkConnected(): Boolean {
+        var cm : ConnectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager;
+
+        return (cm.activeNetworkInfo != null) && (cm.activeNetworkInfo!!.isConnected)
+    }
 }

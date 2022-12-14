@@ -2,6 +2,7 @@ package com.example.emergencyjo
 
 import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -34,7 +35,14 @@ private lateinit var headerView:View
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //Check Internet
+        if ( ! isNetworkConnected() ) {
 
+            var goToDirectCall = Intent(this, DirectCall::class.java)
+            startActivity(goToDirectCall)
+
+
+        }
 
         toolbar = findViewById(R.id.header_id)
 
@@ -130,7 +138,7 @@ private lateinit var headerView:View
 
 
             R.id.safety_Instructions_side_list_id -> {
-                val goToSafety = Intent(this, SafetyInstructions::class.java)
+                val goToSafety = Intent(this, choosesafty::class.java)
                 startActivity(goToSafety)
                 finish()
             }
@@ -182,6 +190,13 @@ private fun connectDataBase()
 
 }
 
+//internet fun
+
+    private fun isNetworkConnected(): Boolean {
+        var cm : ConnectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager;
+
+        return (cm.activeNetworkInfo != null) && (cm.activeNetworkInfo!!.isConnected)
+    }
 
 
 }

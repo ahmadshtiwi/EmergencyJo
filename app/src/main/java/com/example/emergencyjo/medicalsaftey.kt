@@ -13,23 +13,25 @@ import com.google.android.material.navigation.NavigationView
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.activity_firesafty.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.drawer_main_id
 import kotlinx.android.synthetic.main.activity_main.nav_side_list_id
+import kotlinx.android.synthetic.main.activity_medicalsaftey.*
 import kotlinx.android.synthetic.main.activity_user_setting.*
 import kotlinx.android.synthetic.main.header_side_list.view.*
 
-class SafetyInstructions : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class medicalsaftey : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var userName:String
-     private lateinit var toolbar: Toolbar
+    private lateinit var toolbar: Toolbar
     private  lateinit var mRefData: DatabaseReference
-     private lateinit var headerView: View
+    private lateinit var headerView: View
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_safetyinstructions)
+        setContentView(R.layout.activity_medicalsaftey)
         toolbar = findViewById(R.id.header_id)
         setSupportActionBar(toolbar)
         supportActionBar?.title = ""
@@ -38,6 +40,14 @@ class SafetyInstructions : AppCompatActivity(), NavigationView.OnNavigationItemS
         userName=getName()
         headerActionBar()
 
+        btn_saftey1.setOnClickListener{
+            var goTosaftey1 = Intent(this,saftey1::class.java)
+            startActivity(goTosaftey1)
+        }
+        btn_saftey5.setOnClickListener{
+            var goTosaftey5 = Intent(this,saftey5::class.java)
+            startActivity(goTosaftey5)
+        }
 
 
     }
@@ -75,7 +85,7 @@ class SafetyInstructions : AppCompatActivity(), NavigationView.OnNavigationItemS
 
 
             R.id.safety_Instructions_side_list_id -> {
-                val goToSafety = Intent(this, SafetyInstructions::class.java)
+                val goToSafety = Intent(this, choosesafty::class.java)
                 startActivity(goToSafety)
                 finish()
             }

@@ -71,5 +71,8 @@
     <string name="change_password">Change Password</string>
     <string name="change_phone">Change Phone</string>
     <string name="check_information">Check Information</string>
+    <string name="new_phone">New Phone Number</string>
+    <string name="re_new_phone">Re - New Phone Number</string>
+    <string name="fireimage">FireImage</string>
 
 </resources>
