@@ -21,6 +21,13 @@
         android:theme="@style/Theme.EmergencyJo"
         tools:targetApi="31">
         <activity
+            android:name=".forgetpassword"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".medicalsaftey"
             android:exported="false">
             <meta-data

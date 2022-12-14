@@ -107,6 +107,10 @@ class Login:AppCompatActivity(),TextWatcher{
         startActivity(goToCall)
     }
 
+    forget_password_id.setOnClickListener{
+        var forgetpassword = Intent(this,forgetpassword::class.java)
+        startActivity(forgetpassword)
+    }
     }
 
     private fun getID(): String
