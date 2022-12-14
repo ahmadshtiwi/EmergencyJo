@@ -71,7 +71,7 @@
             android:layout_alignParentStart="true"
             android:layout_marginStart="20dp"
             android:layout_marginTop="394dp"
-            app:srcCompat="@drawable/ambulancecar" />
+            app:srcCompat="@drawable/firstaid" />
 
         <TextView
             android:id="@+id/textView19"
