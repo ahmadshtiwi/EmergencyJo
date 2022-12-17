@@ -139,15 +139,15 @@ private lateinit var headerView:View
 
 
             R.id.safety_Instructions_side_list_id -> {
-                val goToSafety = Intent(this, choosesafty::class.java)
+                val goToSafety = Intent(this, ChooseSafety::class.java)
                 startActivity(goToSafety)
-                finish()
+                //finish()
             }
 
             R.id.setting_side_list_id -> {
                 val goToSetting = Intent(this, UserSetting::class.java)
                 startActivity(goToSetting)
-                finish()
+               // finish()
             }
 
             R.id.home_side_list_id -> {

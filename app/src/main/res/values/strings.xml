@@ -18,7 +18,7 @@
     <string name="btn_create_account">Create Account</string>
     <string name="message_personal_id_empty">Enter Personal Id</string>
     <string name="message_check_number_empty">Enter Qualifier Number</string>
-    <string name="message_strong_password">Please Enter Strong Password</string>
+    <string name="message_strong_password">Password content {>8,0-9,a-z,A-Z,character}</string>
     <string name="message_match_password">Password Not Match</string>
     <string name="message_signup">Please sign Up</string>
     <string name="btn_signup_alertdialog">Sign Up</string>

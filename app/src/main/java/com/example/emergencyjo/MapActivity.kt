@@ -3,6 +3,7 @@ package com.example.emergencyjo
 import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
+import android.icu.util.Calendar
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -17,9 +18,13 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_map.*
+import java.text.SimpleDateFormat
 
 class MapActivity : AppCompatActivity() ,OnMapReadyCallback , GoogleMap.OnMarkerClickListener{
 
@@ -27,7 +32,7 @@ class MapActivity : AppCompatActivity() ,OnMapReadyCallback , GoogleMap.OnMarker
     private lateinit var lastLocation : Location
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private  var  database = Firebase.database
-    private  var  reference = database.getReference("UserLocation")
+    private  var  mRefRequest = database.getReference("Requests")
 
     companion object{
         private const val LOCATION_REQUEST_CODE = 1
@@ -76,24 +81,57 @@ class MapActivity : AppCompatActivity() ,OnMapReadyCallback , GoogleMap.OnMarker
                    alert.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener()
                    {
                        placeMarkerOnMap(currentLatLong)
-                       val key = reference.push().key
-                        if (key != null) {
+                       val key = getInfo(UserProperties.USER_PERSONAL_ID)
 
-                        val reminder = Reminder(key, location.latitude, location.longitude,getInfo(UserProperties.USER_PERSONAL_ID),
-                            getInfo(UserProperties.USER_NAME),getInfo(UserProperties.USER_PHONE),description)
-                        reference.child(key).setValue(reminder)
-                            finish()
-                    }
-                       alert.getButton(AlertDialog.BUTTON_NEGATIVE).setOnClickListener()
-                       {
-                           alert.dismiss()
-                       }
+
+                       mRefRequest.child(key).addListenerForSingleValueEvent(object:ValueEventListener{
+                           override fun onDataChange(snapshot: DataSnapshot) {
+
+                               if(snapshot.exists())
+                               {
+                                   showAlertFound()
+                               }
+                               else
+                               {
+                                   val request = RequestData(location.latitude, location.longitude,getInfo(UserProperties.USER_PERSONAL_ID),
+                                       getInfo(UserProperties.USER_NAME),getInfo(UserProperties.USER_PHONE),getInfo(UserProperties.USER_GOVERNORATE),description,getCurrentDate())
+                                   mRefRequest.child(key).setValue(request)
+                                   finish()
+
+                               }
+
+                           }
+
+                           override fun onCancelled(error: DatabaseError) {
+                           }
+
+                       })
+
 
                 }
+                   alert.getButton(AlertDialog.BUTTON_NEGATIVE).setOnClickListener()
+                   {
+                       alert.dismiss()
+                   }
                }
             }
         }
     }
+
+    private fun showAlertFound() {
+
+
+        val alertBuilder = AlertDialog.Builder(this)
+        alertBuilder.setMessage("You Have already Request")
+        alertBuilder.setPositiveButton("Ok", null)
+        val alertDialog = alertBuilder.create()
+        alertDialog.show()
+        alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener()
+        {
+            finish()
+        }
+    }
+
     private fun placeMarkerOnMap(currentLatLong: LatLng) {
 
         val markerOptions = MarkerOptions().position(currentLatLong)
@@ -107,6 +145,14 @@ class MapActivity : AppCompatActivity() ,OnMapReadyCallback , GoogleMap.OnMarker
         return sharedPreferences.getString(data,"").toString()
     }
 
+
+    private fun getCurrentDate(): String {
+        val calendar = Calendar.getInstance()
+        val format = SimpleDateFormat("EEEE hh:mm a")
+
+        return format.format(calendar.time)
+
+    }
 
     override fun onMarkerClick(p0: Marker) = false
 

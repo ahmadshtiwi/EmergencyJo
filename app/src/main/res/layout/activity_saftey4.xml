@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".saftey4">
+    android:id="@+id/drawer_safety4_id"
+    tools:context=".Saftey4">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -30,7 +31,10 @@
             android:layout_width="match_parent"
             android:layout_height="476dp"
             android:layout_below="@+id/imageView5"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:padding="10dp"
             android:background="@drawable/bg_description_box"
             android:orientation="vertical">
 

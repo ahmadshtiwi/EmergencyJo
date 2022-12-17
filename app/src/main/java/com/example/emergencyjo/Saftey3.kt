@@ -13,15 +13,14 @@ import com.google.android.material.navigation.NavigationView
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.activity_firesafty.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.drawer_main_id
 import kotlinx.android.synthetic.main.activity_main.nav_side_list_id
-import kotlinx.android.synthetic.main.activity_medicalsaftey.*
+import kotlinx.android.synthetic.main.activity_saftey3.*
 import kotlinx.android.synthetic.main.activity_user_setting.*
 import kotlinx.android.synthetic.main.header_side_list.view.*
 
-class medicalsaftey : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class Saftey3 : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var userName:String
     private lateinit var toolbar: Toolbar
@@ -31,7 +30,7 @@ class medicalsaftey : AppCompatActivity(), NavigationView.OnNavigationItemSelect
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_medicalsaftey)
+        setContentView(R.layout.activity_saftey3)
         toolbar = findViewById(R.id.header_id)
         setSupportActionBar(toolbar)
         supportActionBar?.title = ""
@@ -40,14 +39,6 @@ class medicalsaftey : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         userName=getName()
         headerActionBar()
 
-        btn_saftey1.setOnClickListener{
-            var goTosaftey1 = Intent(this,saftey1::class.java)
-            startActivity(goTosaftey1)
-        }
-        btn_saftey5.setOnClickListener{
-            var goTosaftey5 = Intent(this,saftey5::class.java)
-            startActivity(goTosaftey5)
-        }
 
 
     }
@@ -66,8 +57,8 @@ class medicalsaftey : AppCompatActivity(), NavigationView.OnNavigationItemSelect
     }
     private fun connectActionbar()
     {
-        val actionToggle= ActionBarDrawerToggle(this,drawer_main_id,toolbar,R.string.drawer_open,R.string.drawer_close)
-        drawer_main_id.addDrawerListener(actionToggle)
+        val actionToggle= ActionBarDrawerToggle(this,drawer_safety3_id,toolbar,R.string.drawer_open,R.string.drawer_close)
+        drawer_safety3_id.addDrawerListener(actionToggle)
         actionToggle.syncState()
         nav_side_list_id.setNavigationItemSelectedListener(this)
     }
@@ -85,7 +76,7 @@ class medicalsaftey : AppCompatActivity(), NavigationView.OnNavigationItemSelect
 
 
             R.id.safety_Instructions_side_list_id -> {
-                val goToSafety = Intent(this, choosesafty::class.java)
+                val goToSafety = Intent(this, FireSafety::class.java)
                 startActivity(goToSafety)
                 finish()
             }
@@ -109,7 +100,7 @@ class medicalsaftey : AppCompatActivity(), NavigationView.OnNavigationItemSelect
     }
 
     override fun onBackPressed() {
-        if(drawer_main_id.isDrawerOpen(GravityCompat.START))
+        if(drawer_safety3_id.isDrawerOpen(GravityCompat.START))
             closeDrawer()
         else
             super.onBackPressed()

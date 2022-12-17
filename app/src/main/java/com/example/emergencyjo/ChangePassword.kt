@@ -95,7 +95,7 @@ class ChangePassword : AppCompatActivity() {
             if (!Expression.expPassword.matches(et_password_id_changepassword.text.toString())) {
                 showMessageError(
                     et_password_id_changepassword,
-                    "Enter a Password content (8>,1,A,a,$)"
+                    "Enter a Password content (8>,0-9,A-Z,a-z,character)"
                 )
             } else if (et_password_id_changepassword.text.toString() != et_re_password_changepassword.text.toString()) {
                 et_re_password_layout_changepassword.error = "Not Match"

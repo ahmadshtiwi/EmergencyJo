@@ -4,7 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
@@ -16,6 +18,7 @@ class SignUp : AppCompatActivity() {
     private var mRefEmergencyUser:DatabaseReference?=null
     private var mRefVCivilAffairs:DatabaseReference?=null
     private var position:Int=-1
+
     private var dataCivilAffairs:ArrayList<DataBaseCivilAffairs>?=null
 
     private fun showComponents() {
@@ -83,11 +86,15 @@ class SignUp : AppCompatActivity() {
             val personalId=et_personal_id_signup_id.text.toString()
             val check =et_check_number_signup_id.text.toString()
 
-            if(personalId.isEmpty())
-                Toast.makeText(this, R.string.message_personal_id_empty, Toast.LENGTH_SHORT).show()
-            else  if(check.isEmpty())
-                Toast.makeText(this, R.string.message_check_number_empty, Toast.LENGTH_SHORT).show()
-            else
+            if(!Expression.expPersonalID.matches(personalId)||personalId.isEmpty()) {
+
+                showMessageError(et_personal_id_signup_id,"Enter Personal ID Correct")
+
+            } else  if(!Expression.expCheck.matches(check)||check.isEmpty()) {
+                showMessageError(et_check_number_signup_id,"Enter Check Number Correct")
+
+
+            } else
             {
                 for(i in 0 until dataCivilAffairs!!.size)
                 {
@@ -98,15 +105,41 @@ class SignUp : AppCompatActivity() {
                     }
 
                 }
-
-                if(dataCivilAffairs!![position].check==check)
+                if(position==-1)
                 {
-                    showComponents()
-                    tv_name_signup_id.text=dataCivilAffairs!![position].name
-                    tv_birthday_signup_id.text=dataCivilAffairs!![position].birthday
-                    tv_gender_signup_id.text=dataCivilAffairs!![position].gender
-                    tv_governorate_signup_id.text=dataCivilAffairs!![position].governorate
-                    tv_mother_name_signup_id.text=dataCivilAffairs!![position].mothername
+                    Toast.makeText(this, "Not Found", Toast.LENGTH_SHORT).show()
+                }
+
+
+
+                else if(dataCivilAffairs!![position].check==check)
+                {
+
+
+                    mRefEmergencyUser?.child(dataCivilAffairs!![position].id!!)?.addListenerForSingleValueEvent(object :ValueEventListener
+                    {
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            if(snapshot.exists())
+                                showAlertFoundAccount()
+
+                        else
+                        {
+                            showComponents()
+                            tv_name_signup_id.text=dataCivilAffairs!![position].name
+                            tv_birthday_signup_id.text=dataCivilAffairs!![position].birthday
+                            tv_gender_signup_id.text=dataCivilAffairs!![position].gender
+                            tv_governorate_signup_id.text=dataCivilAffairs!![position].governorate
+                            tv_mother_name_signup_id.text=dataCivilAffairs!![position].mothername
+                        }
+                        }
+
+                        override fun onCancelled(error: DatabaseError) {
+                            TODO("Not yet implemented")
+                        }
+
+                    })
+
+
                 }
             }
         }
@@ -115,12 +148,16 @@ class SignUp : AppCompatActivity() {
             val password=et_password_signup_id.text.toString()
             val rePassword=et_re_password_signup_id.text.toString()
             val phone=et_phone_number_id.text.toString()
-            if(password.length<8)
+            if(!Expression.expPhone.matches(phone))
             {
-                Toast.makeText(this, R.string.message_strong_password, Toast.LENGTH_SHORT).show()
+                showMessageError(et_phone_number_id,"Enter a Phone like (078/7/9/xxxxxxx)")
+            }
+            else if(!Expression.expPassword.matches(password))
+            {
+                showMessageError(et_password_signup_id,"Enter a Password content (8>,0-9,A-Z,a-z,character)")
             }
             else if (password != rePassword)
-                Toast.makeText(this, R.string.message_match_password, Toast.LENGTH_SHORT).show()
+                et_password_layout.error="Password Not Match"
             else
             {
                 val obj=DataBaseEmergencyUser(dataCivilAffairs!![position].id,dataCivilAffairs!![position].personalID ,
@@ -137,6 +174,26 @@ class SignUp : AppCompatActivity() {
                 finish() // end activity when store data in database and shared preferences
             }
         }
+
+    }
+
+    private fun showAlertFoundAccount() {
+        var alertBuilder=AlertDialog.Builder(this)
+        alertBuilder.setMessage("You Have Account")
+        alertBuilder.setPositiveButton("Log in",null)
+        alertBuilder.setNeutralButton("Cancel",null)
+        var alertDialog=alertBuilder.create()
+        alertDialog.show()
+        alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener()
+        {
+            finish()
+        }
+        alertDialog.getButton(AlertDialog.BUTTON_NEUTRAL).setOnClickListener()
+        {
+            alertDialog.dismiss()
+        }
+
+
 
     }
 
@@ -169,6 +226,12 @@ class SignUp : AppCompatActivity() {
         mRefEmergencyUser=database.getReference("Emergency_user")
 
     }
+    private fun showMessageError(item: EditText, message: String) {
+        item.error = message
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+
+    }
+
 }
 
 

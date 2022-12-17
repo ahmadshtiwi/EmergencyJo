@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
@@ -31,7 +32,7 @@ class Login:AppCompatActivity(),TextWatcher{
     //Check Internet
     if ( ! isNetworkConnected() ) {
 
-        var goToDirectCall = Intent(this, DirectCall::class.java)
+        val goToDirectCall = Intent(this, DirectCall::class.java)
         startActivity(goToDirectCall)
 
 
@@ -80,25 +81,36 @@ class Login:AppCompatActivity(),TextWatcher{
             val personalID = et_personal_id_login_id.text.toString()
             val password = et_password_login_id.text.toString()
 
-            for (data in 0 until dataLogin.size) {      // get data from array list and check id found
-
-                   if (dataLogin[data].personalID.equals(personalID)) {
-                       position = data
-                       break
-                   }
-
+            if(!Expression.expPersonalID.matches(personalID))
+            {
+                et_personal_id_login_id.error="The Personal Id is Incorrect"
             }
-            if(position==-1) {
-             messageDialogToSignUp()
-            } // end if
+            else {
+
+                for (data in 0 until dataLogin.size) {      // get data from array list and check id found
+
+                    if (dataLogin[data].personalID.equals(personalID)) {
+                        position = data
+                        break
+                    }
+
+                }
+                if (position == -1) {
+                    messageDialogToSignUp()
+                } // end if
 
                 else if (dataLogin[position!!].password == password) {
 
-                savedIdToSharedPreferences(dataLogin[position!!])           // save data in shared preferences
-                goToMainActivity()
-                finish()
+                    savedIdToSharedPreferences(dataLogin[position!!])           // save data in shared preferences
+                    goToMainActivity()
+                    finish()
 
-            } // end else
+                } // end else
+
+                else {
+                    Toast.makeText(this, "Id or Password Incorrect", Toast.LENGTH_SHORT).show()
+                }
+            }
 
         }
     direct_call_login_button_id.setOnClickListener()

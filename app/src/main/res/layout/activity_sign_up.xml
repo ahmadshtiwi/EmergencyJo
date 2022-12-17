@@ -262,7 +262,7 @@
             android:id="@+id/et_personal_id_signup_id"
             android:layout_width="@dimen/width_personal_id_signup"
             android:layout_height="@dimen/height_input_box"
-
+            android:inputType="number"
             android:layout_below="@+id/header_id"
             android:layout_alignParentStart="true"
             android:layout_marginStart="80dp"
@@ -270,6 +270,7 @@
             android:ems="10"
             android:fontFamily="@font/convergence"
             android:hint="@string/hint_personal_ID_number"
+            android:maxLength="10"
             android:textSize="@dimen/text_size_input_box" />
 
 
