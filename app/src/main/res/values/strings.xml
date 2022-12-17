@@ -65,7 +65,7 @@
     <string name="hello_first_fragment" translatable="false">Hello first fragment</string>
     <string name="hello_second_fragment" translatable="false">Hello second fragment. Arg: %1$s</string>
     <string name="request_car">Request Car</string>
-    <string name="language">: Language</string>
+    <string name="language">Language :</string>
     <string name="english">English</string>
     <string name="arabic">Arabic</string>
     <string name="change_password">Change Password</string>
@@ -85,5 +85,8 @@
     <string name="change_phone_number">Change Phone Number</string>
     <string name="direct_call_des">Please make sure that you are connected to the Internet. If there is no Internet, use the Quick Connect button at the bottom</string>
     <string name="forget_password">Forget Password</string>
+    <string name="togglebutton">ToggleButton</string>
+    <string name="en">EN</string>
+    <string name="ar">AR</string>
 
 </resources>
