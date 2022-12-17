@@ -8,9 +8,6 @@
     android:scrollbarSize="0dp"
     tools:context=".Saftey2">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -29,87 +26,92 @@
             android:layout_width="120dp"
             android:layout_height="109dp"
             android:layout_below="@+id/header_id"
-            android:layout_alignParentStart="true"
             android:layout_marginStart="144dp"
-            android:layout_marginTop="23dp"
+            android:layout_marginTop="6dp"
             app:srcCompat="@drawable/firefighting" />
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="461dp"
-            android:layout_below="@+id/imageView2"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/imageView2">
 
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginStart="10dp"
-            android:background="@drawable/bg_description_box"
-            android:orientation="vertical"
-            android:padding="10dp">
-
-            <TextView
-                android:id="@+id/textView"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="ينصح باتباع الخطوات التالية في حالة نشوب الحريق في المطبخ :"
-                android:textColor="#F60000"
-                android:textSize="25sp"
-                android:textStyle="bold" />
+                android:layout_height="461dp"
+                android:layout_below="@+id/imageView2"
 
-            <TextView
-                android:id="@+id/textView14"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingTop="10dp"
-                android:text="1- إذا نشب الحريق في الفرن أو الميكروويف ينصح بتركه مغلقاً وإطفاء مصدر الطاقة عنها، لأنَّ قلة الأكسجين في المكان سيطفئ النار."
-                android:textSize="20dp"
-                android:textStyle="bold" />
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/bg_description_box"
+                android:orientation="vertical"
+                android:padding="10dp">
 
-            <TextView
-                android:id="@+id/textView15"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingTop="10dp"
-                android:text="2- إذا استمر الدخان بالصعود ينصح بالاتصال بالجهات المختصة."
-                android:textSize="20dp"
-                android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="ينصح باتباع الخطوات التالية في حالة نشوب الحريق في المطبخ :"
+                    android:textColor="#F60000"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/textView16"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingTop="10dp"
-                android:text="3- إذا نشب الحريق في مقلاةٍ فوق الغاز ينصح بلبس قفّاز المطبخ ووضع غطاء المقلاة فوقها بسرعة ورفع المقلاة عن النار، وفي حال عدم التمكّن من وضع الغطاء ينصح باستخدام طفاية الحريق."
-                android:textSize="20dp"
-                android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/textView14"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingTop="10dp"
+                    android:text="1- إذا نشب الحريق في الفرن أو الميكروويف ينصح بتركه مغلقاً وإطفاء مصدر الطاقة عنها، لأنَّ قلة الأكسجين في المكان سيطفئ النار."
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/textView17"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingTop="10dp"
-                android:text="4- عدم استخدام الماء لإطفاء الحريق الناشب عن الزيوت؛ لأنَّ الزيت سيتناثر مسبباً انتشاراً للحريق ، وعوضاً عن الماء يمكن استخدم الكثير من البيكنج صودا، أو تغطية المقلاة بالغطاء إذا كانت النار صغيرة، أو وضع منشفة كبيرة مبللة فوق النار، أو استخدام طفاية الحريق."
-                android:textSize="20dp"
-                android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/textView15"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingTop="10dp"
+                    android:text="2- إذا استمر الدخان بالصعود ينصح بالاتصال بالجهات المختصة."
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/textView18"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingTop="10dp"
-                android:text="5- عدم النفخ على النار لإطفائه، لأنّه يتسبب بإشعال ألسنة اللهب وانتشارها بصورةٍ أكبر، وفي حال كانت النار كبيرة ولا يمكن السيطرة عليها ينصح بالخروج سريعاً من المنزل والاتصال برقم الطوارئ"
-                android:textSize="20dp"
-                android:textStyle="bold" />
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/textView16"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingTop="10dp"
+                    android:text="3- إذا نشب الحريق في مقلاةٍ فوق الغاز ينصح بلبس قفّاز المطبخ ووضع غطاء المقلاة فوقها بسرعة ورفع المقلاة عن النار، وفي حال عدم التمكّن من وضع الغطاء ينصح باستخدام طفاية الحريق."
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView17"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingTop="10dp"
+                    android:text="4- عدم استخدام الماء لإطفاء الحريق الناشب عن الزيوت؛ لأنَّ الزيت سيتناثر مسبباً انتشاراً للحريق ، وعوضاً عن الماء يمكن استخدم الكثير من البيكنج صودا، أو تغطية المقلاة بالغطاء إذا كانت النار صغيرة، أو وضع منشفة كبيرة مبللة فوق النار، أو استخدام طفاية الحريق."
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView18"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingTop="10dp"
+                    android:text="5- عدم النفخ على النار لإطفائه، لأنّه يتسبب بإشعال ألسنة اللهب وانتشارها بصورةٍ أكبر، وفي حال كانت النار كبيرة ولا يمكن السيطرة عليها ينصح بالخروج سريعاً من المنزل والاتصال برقم الطوارئ"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </ScrollView>
 
 
     </RelativeLayout>
-    </ScrollView>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_side_list_id"
