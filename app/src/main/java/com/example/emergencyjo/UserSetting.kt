@@ -2,11 +2,12 @@ package com.example.emergencyjo
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import com.google.android.material.navigation.NavigationView
@@ -19,14 +20,21 @@ import kotlinx.android.synthetic.main.activity_main.nav_side_list_id
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.activity_user_setting.*
 import kotlinx.android.synthetic.main.header_side_list.view.*
+import java.util.*
+import kotlin.system.exitProcess
 
-class UserSetting : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class UserSetting :AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
      private  lateinit var userName:String
      private  lateinit var phoneNumber:String
      private  lateinit var toolbar: Toolbar
      private  lateinit var mRefData: DatabaseReference
      private  lateinit var headerView:View
+
+     //Language change variables
+    private var currentLanguage = "en"
+    private var currentLang: String? = null
+    lateinit var locale: Locale
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,12 +46,14 @@ class UserSetting : AppCompatActivity(), NavigationView.OnNavigationItemSelected
         connectActionbar()
         connectDataBase()
 
+        //----------//
         //Toast.makeText(applicationContext, "$userID", Toast.LENGTH_SHORT).show()
         userName=getName()
         phoneNumber=getPhone()
         headerActionBar()
         showInformation()
         //Get Name And Phone Number
+
         //Change password button
         btn_change_password_setting.setOnClickListener {
            val goToChangePassword = Intent(this,ChangePassword::class.java)
@@ -53,9 +63,38 @@ class UserSetting : AppCompatActivity(), NavigationView.OnNavigationItemSelected
             var gotochangephone = Intent(this,ChangePhone::class.java)
             startActivity(gotochangephone)
         }
+     //Change Language
+        currentLanguage = intent.getStringExtra(currentLang).toString()
+        ar_radio.setOnClickListener{
+            setLocale("ar")
 
+        }
+        en_radio.setOnClickListener{
+            setLocale("en")
+        }
     }
-//Store Name and phone
+   //Set Language
+    private fun setLocale(localeName: String) {
+        if (localeName != currentLanguage) {
+            locale = Locale(localeName)
+            val res = resources
+            val dm = res.displayMetrics
+            val conf = res.configuration
+            conf.locale = locale
+            res.updateConfiguration(conf, dm)
+            val refresh = Intent(
+                this, Main::class.java
+            )
+            refresh.putExtra(currentLang, localeName)
+            startActivity(refresh)
+        } else {
+            Toast.makeText(this@UserSetting, "Language, , already, , selected)!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+
+    //Store Name and phone
     private fun showInformation() {
         tv_name_setting_id.text=userName
         tv_phone_setting_id.text=phoneNumber

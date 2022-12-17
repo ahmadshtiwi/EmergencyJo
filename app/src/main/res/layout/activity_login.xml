@@ -97,14 +97,19 @@
             android:textSize="@dimen/text_size_input_box" />
 
         <!--login button -->
+
+        <!--signup button -->
+
+        <!--under picture -->
+
         <Button
             android:id="@+id/login_button_id"
-            android:layout_width="@dimen/width_btn_login"
-            android:layout_height="@dimen/height_button"
+            android:layout_width="wrap_content"
+            android:layout_height="37dp"
             android:layout_below="@id/forget_password_id"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="65dp"
-            android:layout_marginEnd="40dp"
+            android:layout_marginTop="62dp"
+            android:layout_marginEnd="252dp"
             android:background="@drawable/bg_button_master"
             android:enabled="false"
             android:fontFamily="@font/convergence"
@@ -114,10 +119,6 @@
             android:textSize="@dimen/text_size_button"
             android:textStyle="bold"
             tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
-
-        <!--signup button -->
-
-        <!--under picture -->
 
         <Button
             android:id="@+id/direct_call_login_button_id"
@@ -141,8 +142,8 @@
             android:layout_height="@dimen/height_button"
             android:layout_below="@id/forget_password_id"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="65dp"
+            android:layout_marginStart="238dp"
+            android:layout_marginTop="58dp"
             android:background="@drawable/bg_button_seconder"
             android:fontFamily="@font/convergence"
             android:text="@string/btn_signUp"

@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/convergence"
         android:gravity="center"
-        android:text="Please make sure that you are connected to the Internet. If there is no Internet, use the Quick Connect button at the bottom"
+        android:text="@string/direct_call_des"
         android:textColor="#E80000"
         android:textSize="24dp"
         android:textStyle="bold"
