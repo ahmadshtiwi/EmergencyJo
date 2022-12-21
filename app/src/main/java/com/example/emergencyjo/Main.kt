@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import android.widget.AdapterView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
@@ -92,6 +93,12 @@ private lateinit var mRefStatus: DatabaseReference
 
         val adapter=AdapterStatus(this,R.layout.status_view,statusData!!)
         gd_status_id.adapter=adapter
+
+        gd_status_id.onItemClickListener= AdapterView.OnItemClickListener { parent, view, position, id->
+
+            et_description_box_id.setText(statusData!![position].status.toString())
+
+        }
 
         btn_map_id.setOnClickListener()
         {

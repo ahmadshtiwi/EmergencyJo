@@ -102,7 +102,7 @@ class ChooseSafety : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.setting_side_list_id -> {
                 val goToSetting = Intent(this, UserSetting::class.java)
                 startActivity(goToSetting)
-                finish()
+                 finish()
             }
 
             R.id.home_side_list_id -> {
