@@ -8,11 +8,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_main.*
@@ -28,6 +32,8 @@ private lateinit var userName:String
 private lateinit var toolbar:Toolbar
 private lateinit var mRefData:DatabaseReference
 private lateinit var headerView:View
+ private var statusData: ArrayList<Status>?=null
+private lateinit var mRefStatus: DatabaseReference
 
     var name:String?=null
 
@@ -35,14 +41,17 @@ private lateinit var headerView:View
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        statusData=ArrayList()
+
         //Check Internet
         if ( ! isNetworkConnected() ) {
 
-            var goToDirectCall = Intent(this, DirectCall::class.java)
+            val goToDirectCall = Intent(this, DirectCall::class.java)
             startActivity(goToDirectCall)
 
 
         }
+
 
 
         toolbar = findViewById(R.id.header_id)
@@ -57,10 +66,32 @@ private lateinit var headerView:View
         //Toast.makeText(applicationContext, "$userID", Toast.LENGTH_SHORT).show()
 
         headerActionBar()
+
+        mRefStatus.addValueEventListener(object:ValueEventListener
+        {
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                for(d in snapshot.children)
+                {
+                  //  statusData?.clear()
+                    statusData?.add(d.getValue(Status::class.java)!!)
+                    Toast.makeText(baseContext, "j", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {}
+
+        })
+
+
+
     }
 
     override fun onStart() {
         super.onStart()
+
+        val adapter=AdapterStatus(this,R.layout.status_view,statusData!!)
+        gd_status_id.adapter=adapter
 
         btn_map_id.setOnClickListener()
         {
@@ -80,22 +111,9 @@ private lateinit var headerView:View
 
         }
 
-        tv_fire_id.setOnClickListener()
-        {
-            val fire=tv_fire_id.text.toString()
-            et_description_box_id.setText(fire)
-        }
-        tv_accident_id.setOnClickListener()
-        {
-            val accident=tv_accident_id.text.toString()
-            et_description_box_id.setText(accident)
-        }
-        tv_stroke_id.setOnClickListener()
-        {
-            val stroke=tv_stroke_id.text.toString()
-            et_description_box_id.setText(stroke)
 
-        }
+
+
         btn_direct_call_id.setOnClickListener()
         {
             val goToCall =Intent(Intent.ACTION_DIAL, Uri.parse("tel:911"))
@@ -188,13 +206,14 @@ private fun connectDataBase()
 {
     val database=Firebase.database
     mRefData=database.getReference("Emergency_user")
+    mRefStatus=database.getReference("Status")
 
 }
 
 //internet fun
 
     private fun isNetworkConnected(): Boolean {
-        var cm : ConnectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager;
+        val cm : ConnectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
         return (cm.activeNetworkInfo != null) && (cm.activeNetworkInfo!!.isConnected)
     }

@@ -12,28 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tv_stroke_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/header_id"
-            android:layout_marginStart="19dp"
-            android:layout_marginTop="45dp"
-            android:layout_toEndOf="@+id/tv_accident_id"
-            android:background="@drawable/bg_button_master"
-            android:fontFamily="@font/convergence"
-            android:gravity="center"
-            android:onClick="setDescription"
-            android:paddingStart="10dp"
-            android:paddingTop="5dp"
-            android:paddingEnd="10dp"
-            android:paddingBottom="5dp"
-            android:text="@string/stroke"
-            android:textColor="@color/text2"
-            android:textSize="24sp"
-            android:textStyle="italic"
-            tools:ignore="TouchTargetSizeCheck" />
-
         <include
             android:id="@+id/header_id"
             layout="@layout/toolbar"
@@ -78,58 +56,26 @@
             android:id="@+id/et_description_box_id"
             android:layout_width="353dp"
             android:layout_height="194dp"
-            android:layout_below="@+id/header_id"
+            android:layout_below="@+id/gd_status_id"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="148dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/bg_description_box"
             android:ems="10"
             android:gravity="center"
             android:hint="@string/set_description_about_the_action"
             android:inputType="textMultiLine" />
 
-        <TextView
-            android:id="@+id/tv_fire_id"
-            android:layout_width="77dp"
-            android:layout_height="wrap_content"
+        <GridView
+            android:id="@+id/gd_status_id"
+            android:layout_width="match_parent"
+            android:layout_height="128dp"
+            android:numColumns="3"
+            android:textAlignment="center"
+            android:verticalSpacing="3dp"
+            android:horizontalSpacing="3dp"
             android:layout_below="@+id/header_id"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="45dp"
-            android:background="@drawable/bg_button_master"
-            android:fontFamily="@font/convergence"
-            android:gravity="center"
-            android:onClick="setDescription"
-            android:paddingStart="10dp"
-            android:paddingTop="5dp"
-            android:paddingEnd="10dp"
-            android:paddingBottom="5dp"
-            android:text="@string/fire"
-            android:textColor="@color/text2"
-            android:textSize="24sp"
-            android:textStyle="italic"
-            tools:ignore="TouchTargetSizeCheck" />
-
-        <TextView
-            android:id="@+id/tv_accident_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/header_id"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="45dp"
-            android:layout_toEndOf="@+id/tv_fire_id"
-            android:background="@drawable/bg_button_master"
-            android:fontFamily="@font/convergence"
-            android:gravity="center"
-            android:onClick="setDescription"
-            android:paddingStart="10dp"
-            android:paddingTop="5dp"
-            android:paddingEnd="10dp"
-            android:paddingBottom="5dp"
-            android:text="@string/accident"
-            android:textColor="@color/text2"
-            android:textSize="24sp"
-            android:textStyle="italic"
-            tools:ignore="TouchTargetSizeCheck" />
+            android:layout_marginTop="10dp"
+          />
 
 
     </RelativeLayout>
