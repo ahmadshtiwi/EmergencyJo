@@ -15,5 +15,6 @@ class UserProperties
      const val USER_PASSWORD:String="user_password"
      const val USER_PHONE:String="user_phone"
      const val FILE_NAME_SHARED_INFORMATION:String="Information"
+     const val LANGUAGE="language"
  }
 }

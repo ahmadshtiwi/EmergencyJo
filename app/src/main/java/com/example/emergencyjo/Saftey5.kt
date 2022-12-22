@@ -14,13 +14,12 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_main.drawer_main_id
 import kotlinx.android.synthetic.main.activity_main.nav_side_list_id
 import kotlinx.android.synthetic.main.activity_saftey5.*
 import kotlinx.android.synthetic.main.activity_user_setting.*
 import kotlinx.android.synthetic.main.header_side_list.view.*
 
-class Saftey5 : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class Saftey5 : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var userName:String
     private lateinit var toolbar: Toolbar
@@ -108,7 +107,7 @@ class Saftey5 : AppCompatActivity(), NavigationView.OnNavigationItemSelectedList
 
     private fun closeDrawer()
     {
-        drawer_main_id.closeDrawer(GravityCompat.START)
+        drawer_safety5_id.closeDrawer(GravityCompat.START)
 
     }
     private fun editIdToSharedPreferences() {

@@ -52,7 +52,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="ينصح باتباع الخطوات التالية في حالة نشوب الحريق في المطبخ :"
+                    android:text="@string/safety_2_1"
                     android:textColor="#F60000"
                     android:textSize="25sp"
                     android:textStyle="bold" />
@@ -63,7 +63,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:paddingTop="10dp"
-                    android:text="1- إذا نشب الحريق في الفرن أو الميكروويف ينصح بتركه مغلقاً وإطفاء مصدر الطاقة عنها، لأنَّ قلة الأكسجين في المكان سيطفئ النار."
+                    android:text="@string/safety_2_2"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -73,7 +73,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:paddingTop="10dp"
-                    android:text="2- إذا استمر الدخان بالصعود ينصح بالاتصال بالجهات المختصة."
+                    android:text="@string/safety_2_3"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -83,7 +83,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:paddingTop="10dp"
-                    android:text="3- إذا نشب الحريق في مقلاةٍ فوق الغاز ينصح بلبس قفّاز المطبخ ووضع غطاء المقلاة فوقها بسرعة ورفع المقلاة عن النار، وفي حال عدم التمكّن من وضع الغطاء ينصح باستخدام طفاية الحريق."
+                    android:text="@string/safety_2_4"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -93,7 +93,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:paddingTop="10dp"
-                    android:text="4- عدم استخدام الماء لإطفاء الحريق الناشب عن الزيوت؛ لأنَّ الزيت سيتناثر مسبباً انتشاراً للحريق ، وعوضاً عن الماء يمكن استخدم الكثير من البيكنج صودا، أو تغطية المقلاة بالغطاء إذا كانت النار صغيرة، أو وضع منشفة كبيرة مبللة فوق النار، أو استخدام طفاية الحريق."
+                    android:text="@string/safety_2_5"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -103,7 +103,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:paddingTop="10dp"
-                    android:text="5- عدم النفخ على النار لإطفائه، لأنّه يتسبب بإشعال ألسنة اللهب وانتشارها بصورةٍ أكبر، وفي حال كانت النار كبيرة ولا يمكن السيطرة عليها ينصح بالخروج سريعاً من المنزل والاتصال برقم الطوارئ"
+                    android:text="@string/safety_2_6"
                     android:textSize="20sp"
                     android:textStyle="bold" />
             </LinearLayout>

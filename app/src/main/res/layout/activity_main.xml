@@ -77,6 +77,17 @@
             android:layout_marginTop="10dp"
           />
 
+        <ImageButton
+            android:id="@+id/btn_remove_text_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/et_description_box_id"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:padding="5dp"
+            android:background="@drawable/bg_button_master"
+            app:srcCompat="@drawable/remove_icon" />
+
 
     </RelativeLayout>
 

@@ -4,66 +4,56 @@ import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.zeugmasolutions.localehelper.Locales
 import kotlinx.android.synthetic.main.activity_login.*
-import java.util.*
 import kotlin.collections.ArrayList
 
-class Login:AppCompatActivity(),TextWatcher{
+class Login:BaseActivity(),TextWatcher {
 
-    private lateinit var dataLogin:ArrayList<DataBaseEmergencyUser>
-    private var mRefEmergencyUser: DatabaseReference?=null
-    private var position:Int?=-1
+    private lateinit var dataLogin: ArrayList<DataBaseEmergencyUser>
+    private var mRefEmergencyUser: DatabaseReference? = null
+    private var position: Int? = -1
 
 
-    //Language change variables
-    private var currentLanguage = "se"
-    private var currentLang: String? = null
-    lateinit var locale: Locale
+     /******************************* on create ***************************************************/
 
-/******************************* on create ***************************************************/
-
-     override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-    //Check Internet
-    if ( ! isNetworkConnected() ) {
+        //Check Internet
+        if (!isNetworkConnected()) {
 
-        val goToDirectCall = Intent(this, DirectCall::class.java)
-        startActivity(goToDirectCall)
+            val goToDirectCall = Intent(this, DirectCall::class.java)
+            startActivity(goToDirectCall)
+
+        }
 
 
-    }
+        val test = getID()
+        if (test.length == 10) {
+            goToMainActivity()
+            finish()
+        }
+        dataLogin = ArrayList()
+        connectDataBase()
 
-
-    val test=getID()
-         if(test.length==10)
-         {
-             goToMainActivity()
-             finish()
-         }
-         dataLogin= ArrayList()
-         connectDataBase()
-
-        mRefEmergencyUser?.addValueEventListener(object :ValueEventListener
-        {
+        mRefEmergencyUser?.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
 
-                for (snap in snapshot.children )
-                {
+                for (snap in snapshot.children) {
                     dataLogin.add(snap.getValue(DataBaseEmergencyUser::class.java)!!)
                 }
             }// end data chang
+
             override fun onCancelled(error: DatabaseError) {}
 
         })//end add value event listener
@@ -73,37 +63,20 @@ class Login:AppCompatActivity(),TextWatcher{
         et_personal_id_login_id.addTextChangedListener(this) //using text watcher
 
 
-
-
-
-    //language Change
-    btn_ar.setOnClickListener{
-        setLocale("ar")
-    }
-    btn_en.setOnClickListener{
-        setLocale("en")
-    }
-
-}//end onCreate method
-
-    //Set Language
-    private fun setLocale(localeName: String) {
-        if (localeName != currentLanguage) {
-            locale = Locale(localeName)
-            val res = resources
-            val dm = res.displayMetrics
-            val conf = res.configuration
-            conf.locale = locale
-            res.updateConfiguration(conf, dm)
-            val refresh = Intent(
-                this, Login::class.java
-            )
-            refresh.putExtra(currentLang, localeName)
-            startActivity(refresh)
-        } else {
-            Toast.makeText(this@Login, "Language, , already, , selected)!", Toast.LENGTH_SHORT).show();
+        //Set Language
+        //language Change
+        btn_ar.setOnClickListener {
+            updateLocale(Locales.Arabic)
         }
-    }
+        btn_en.setOnClickListener {
+            updateLocale(Locales.English)
+        }
+
+    }//end onCreate method
+
+
+
+
 
     /***************************************** on start ***************************************/
 
@@ -159,8 +132,8 @@ class Login:AppCompatActivity(),TextWatcher{
     }
 
     forget_password_id.setOnClickListener{
-        var forgetpassword = Intent(this,forgetpassword::class.java)
-        startActivity(forgetpassword)
+        val forgetPassword = Intent(this,forgetpassword::class.java)
+        startActivity(forgetPassword)
     }
     }
 
@@ -243,7 +216,7 @@ class Login:AppCompatActivity(),TextWatcher{
 
     //Check Internet
     private fun isNetworkConnected(): Boolean {
-        var cm : ConnectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager;
+        val cm : ConnectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
         return (cm.activeNetworkInfo != null) && (cm.activeNetworkInfo!!.isConnected)
     }

@@ -53,7 +53,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:paddingBottom="10dp"
-                    android:text="تشمل الإسعافات الأولية التي يجب تقديمها للشخص المصاب بالإغماء على الخطوات الآتية:"
+                    android:text="@string/safety_5_1"
                     android:textColor="#FF0000"
                     android:textSize="22sp"
                     android:textStyle="bold" />
@@ -65,7 +65,7 @@
                     android:fontFamily="@font/convergence"
                     android:gravity="center"
                     android:paddingTop="17dp"
-                    android:text="1- مساعدة الشخص على الاستلقاء على ظهره إذا كان الشخص جالسًا على كرسي."
+                    android:text="@string/safety_5_2"
                     android:textColor="#000000"
                     android:textSize="@dimen/text_size_safety"
                     android:textStyle="bold" />
@@ -77,7 +77,7 @@
                     android:fontFamily="@font/convergence"
                     android:gravity="center"
                     android:paddingTop="17dp"
-                    android:text="2- دحرجة الشخص على الجانب في حال فقدانه للوعي، والتأكد من أنه يتنفس ومن نبضات القلب المنتظمة."
+                    android:text="@string/safety_5_3"
                     android:textColor="#000000"
                     android:textSize="@dimen/text_size_safety"
                     android:textStyle="bold" />
@@ -90,7 +90,7 @@
                     android:gravity="center"
                     android:paddingStart="10dp"
                     android:paddingTop="17dp"
-                    android:text="3- رفع قدمي الشخص أعلى من مستوى القلب بحوالي 30 سم إن أمكن لاستعادة تدفق الدم للدماغ."
+                    android:text="@string/safety_5_4"
                     android:textColor="#000000"
                     android:textSize="@dimen/text_size_safety"
                     android:textStyle="bold" />
@@ -103,7 +103,7 @@
                     android:gravity="center"
                     android:paddingStart="10dp"
                     android:paddingTop="17dp"
-                    android:text="4- فك الياقات والأحزمة وغيرها من الملابس الضيقة إذا كانت نوبة الإغماء ناتجة عن الحرارة، ومحاولة تبريد الشخص عن طريق مسحه بقطعة قماش مبللة أو تهويته."
+                    android:text="@string/safety_5_5"
                     android:textColor="#000000"
                     android:textSize="@dimen/text_size_safety"
                     android:textStyle="bold" />
@@ -115,7 +115,7 @@
                     android:fontFamily="@font/convergence"
                     android:gravity="center"
                     android:paddingTop="17dp"
-                    android:text="5- التأكد من وجود الكثير من الهواء النقي والطلب من الآخرين الابتعاد وفتح النافذة إذا كان الشخص في غرفة."
+                    android:text="@string/safety_5_6"
                     android:textColor="#000000"
                     android:textSize="@dimen/text_size_safety"
                     android:textStyle="bold" />
@@ -128,7 +128,7 @@
                     android:gravity="center"
                     android:paddingStart="8dp"
                     android:paddingTop="17dp"
-                    android:text="6- تقييم الشخص بحثًا عن أي إصابات محتملة أو كدمات في حال سقوطه."
+                    android:text="@string/safety_5_7"
                     android:textColor="#000000"
                     android:textSize="@dimen/text_size_safety"
                     android:textStyle="bold" />
@@ -140,7 +140,7 @@
                     android:fontFamily="@font/convergence"
                     android:gravity="center"
                     android:paddingTop="17dp"
-                    android:text="7- الاتصال برقم الطوارئ إذا لم يستعيد الشخص وعيه في غضون دقيقة واحدة."
+                    android:text="@string/safety_5_8"
                     android:textColor="#000000"
                     android:textSize="@dimen/text_size_safety"
                     android:textStyle="bold" />
@@ -152,7 +152,7 @@
                     android:fontFamily="@font/convergence"
                     android:gravity="center"
                     android:paddingTop="20dp"
-                    android:text="ويجدر التنويه أنه في حال عدم تنفس الشخص المغمى عليه، يجب البدء في إجراء الإنعاش القلبي الرئوي والاتصال على الطوارئ فورًا، والاستمرار في إجراء الإنعاش القلبي الرئوي، حتى يستعيد الشخص تنفسه أو تصل المساعدة."
+                    android:text="@string/safety_5_9"
                     android:textColor="#FF0000"
                     android:textSize="20sp"
                     android:layout_marginBottom="10dp"

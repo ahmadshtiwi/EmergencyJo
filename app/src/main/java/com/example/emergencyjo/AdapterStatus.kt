@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 
-class AdapterStatus(var context:Context, var resource:Int, var data: ArrayList<Status>):BaseAdapter() {
+class AdapterStatus(var context:Context, private var resource:Int, var data: ArrayList<Status>):BaseAdapter() {
     override fun getCount(): Int {
         return data.size
     }
@@ -27,7 +27,7 @@ return position.toLong()   }
             view=LayoutInflater.from(context).inflate(resource,parent,false)
         }
 
-        var text=view?.findViewById<TextView>(R.id.tv_status_id)
+        val text=view?.findViewById<TextView>(R.id.tv_status_id)
 
         text?.text=data[position].status
 

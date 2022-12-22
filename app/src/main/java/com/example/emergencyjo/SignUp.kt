@@ -1,7 +1,6 @@
 package com.example.emergencyjo
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
@@ -12,7 +11,7 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_sign_up.*
 
-class SignUp : AppCompatActivity() {
+class SignUp : BaseActivity() {
 
 
     private var mRefEmergencyUser:DatabaseReference?=null
@@ -88,7 +87,7 @@ class SignUp : AppCompatActivity() {
 
             if(!Expression.expPersonalID.matches(personalId)||personalId.isEmpty()) {
 
-                showMessageError(et_personal_id_signup_id,"Enter Personal ID Correct")
+                showMessageError(et_personal_id_signup_id,"Please Enter Personal ID Correct")
 
             } else  if(!Expression.expCheck.matches(check)||check.isEmpty()) {
                 showMessageError(et_check_number_signup_id,"Enter Check Number Correct")
@@ -178,11 +177,11 @@ class SignUp : AppCompatActivity() {
     }
 
     private fun showAlertFoundAccount() {
-        var alertBuilder=AlertDialog.Builder(this)
-        alertBuilder.setMessage("You Have Account")
-        alertBuilder.setPositiveButton("Log in",null)
-        alertBuilder.setNeutralButton("Cancel",null)
-        var alertDialog=alertBuilder.create()
+        val alertBuilder=AlertDialog.Builder(this)
+        alertBuilder.setMessage(R.string.message_personal_id_empty)
+        alertBuilder.setPositiveButton(R.string.btn_login,null)
+        alertBuilder.setNeutralButton(R.string.btn_cancel_alertdialog,null)
+        val alertDialog=alertBuilder.create()
         alertDialog.show()
         alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener()
         {

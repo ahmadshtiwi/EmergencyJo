@@ -39,17 +39,17 @@ class FireSafety : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
         headerActionBar()
 
         btn_saftey2.setOnClickListener{
-            var goTosaftey2 = Intent(this,Saftey2::class.java)
-            startActivity(goTosaftey2)
+            val goToSaftey2 = Intent(this,Saftey2::class.java)
+            startActivity(goToSaftey2)
         }
         btn_saftey3.setOnClickListener{
-            var goTosaftey3 = Intent(this,Saftey3::class.java)
-            startActivity(goTosaftey3)
+            val goToSaftey3 = Intent(this,Saftey3::class.java)
+            startActivity(goToSaftey3)
         }
 
         btn_saftey4.setOnClickListener{
-            var goTosaftey4 = Intent(this,Saftey4::class.java)
-            startActivity(goTosaftey4)
+            val goToSaftey4 = Intent(this,Saftey4::class.java)
+            startActivity(goToSaftey4)
         }
 
 
@@ -120,7 +120,7 @@ class FireSafety : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
 
     private fun closeDrawer()
     {
-        drawer_main_id.closeDrawer(GravityCompat.START)
+        drawer_fire_safety_id.closeDrawer(GravityCompat.START)
 
     }
     private fun editIdToSharedPreferences() {

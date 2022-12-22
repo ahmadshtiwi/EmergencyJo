@@ -1,102 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Emergency Jo</string>
-    <string name="hint_personal_ID_number">Personal ID Number</string>
-    <string name="name_app1" translatable="false">Emergency</string>
-    <string name="name_app2" translatable="false">Jo</string>
-    <string name="hint_password">Password</string>
-    <string name="btn_login">Log In</string>
-    <string name="link_forgot_password">forgot password ?</string>
-    <string name="btn_signUp">Sign Up</string>
-    <string name="hint_registration_number">000/000</string>
-    <string name="get_data_btn">Get Data</string>
-    <string name="tv_name_signup">Name</string>
-    <string name="tv_gender_signup">Gender</string>
-    <string name="tv_birthday_signup">Birthday</string>
-    <string name="tv_governorate_signup">Governorate</string>
-    <string name="tv_mother_name_signup">Mother Name</string>
-    <string name="hint_re_password">Re-Password</string>
-    <string name="btn_create_account">Create Account</string>
-    <string name="message_personal_id_empty">Enter Personal Id</string>
-    <string name="message_check_number_empty">Enter Qualifier Number</string>
-    <string name="message_strong_password">Password content {>8,0–9,a-z,A-Z,character}</string>
-    <string name="message_match_password">Password Not Match</string>
-    <string name="message_signup">Please sign Up</string>
-    <string name="message_not_found">Not Found</string>
-    <string name="message_sure_request">Are You Sure To Request</string>
-    <string name="message_sure_change_password">Are You sure to change password</string>
-    <string name="message_sure_change_phone">Are You sure to change your phone number</string>
+    <string name="hint_personal_ID_number">الرقم الوطني</string>
+    <string name="hint_password">كلمة المرور</string>
+    <string name="link_forgot_password">هل نسيت كلمة المرور ؟</string>
+    <string name="btn_signUp">انشاء حساب</string>
+    <string name="hint_registration_number">رقم القيد</string>
+    <string name="get_data_btn">جلب البيانات</string>
+    <string name="tv_name_signup">الاسم</string>
+    <string name="tv_gender_signup">الجنس</string>
+    <string name="tv_birthday_signup">تاريخ الميلاد</string>
+    <string name="tv_governorate_signup">المحافظة</string>
+    <string name="tv_mother_name_signup">اسم الأم</string>
+    <string name="hint_re_password">اعادة كلمة المرور</string>
+    <string name="btn_create_account">انشاء حساب</string>
+    <string name="message_personal_id_empty">ادخل الرقم الوطني</string>
+    <string name="message_check_number_empty">ادخل رقم القيد</string>
+    <string name="message_strong_password">يجب ان تحتوي الكلمة السرية على {\>\8,0\-\9,\a\-z\,A\-Z,\حروف}\</string>
+    <string name="message_match_password">كلمة المرور غير متطابقة</string>
+    <string name="message_sure_request">هل انت متاكد من ارسال الطلب</string>
+    <string name="message_wrong_information">معلومات خاطئة</string>
+    <string name="message_sure_change_password">هل متاكد من تغيير كلمة السر</string>
+    <string name="message_sure_change_phone">هل انتا متاكد من تغيير رقم هاتفك</string>
 
-    <string name="have_request">You have Request</string>
-    <string name="message_wrong_information">Wrong Information</string>
-    <string name="ok">OK</string>
-    <string name="btn_cancel_alertdialog">Cancel</string>
-    <string name="btn_signup_alertdialog">Sign Up</string>
-    <string name="btn_request">Request</string>
 
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
 
-    <string name="direct_call">Call 911</string>
-    <string name="ambulance">Ambulance</string>
-    <string name="fire_fighter">Fire Fighter</string>
-    <string name="call">Call</string>
-    <string name="next_btn">Next</string>
-    <string name="home_side_list">Home</string>
-    <string name="safety_instructions_side_list">Safety Instructions</string>
-    <string name="setting_side_list">Setting</string>
-    <string name="log_out_side_list">Log Out</string>
-    <string name="drawer_open">Open</string>
-    <string name="drawer_close">Close</string>
-    <string name="title_activity_maps">MapsActivity</string>
-    <string name="hint_phone_number">Phone Number</string>
-    <string name="title_activity_users_home">UsersHomeActivity</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title" translatable="false">Android Studio</string>
-    <string name="nav_header_subtitle" translatable="false">android.studio@android.com</string>
-    <string name="nav_header_desc" translatable="false">Navigation header</string>
-    <string name="action_settings">Settings</string>
+    <string name="have_request">لديك بلفعل طلب</string>
+    <string name="ok">موافق</string>
+    <string name="yes">نعم</string>
+    <string name="no">لا</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery" translatable="false">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
-    <string name="request_Map">Request</string>
-    <string name="title_activity_user_home">UserHomeActivity</string>
-    <string name="title_activity_map">MapActivity</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label" translatable="false">First Fragment</string>
-    <string name="second_fragment_label" translatable="false">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
+    <string name="btn_login">تسجيل الدخول</string>
+    <string name="message_signup">قم بانشاء حساب</string>
+    <string name="btn_signup_alertdialog">انشاء حساب</string>
+    <string name="message_not_found">لم يتم العثور على المعلومات</string>
+    <string name="btn_cancel_alertdialog">الغاء</string>
+    <string name="btn_request">طلب</string>
+    <string name="direct_call">الاتصال على 911</string>
+    <string name="ambulance">اسعاف</string>
+    <string name="fire_fighter">سيارة اطفاء</string>
+    <string name="call">اتصال</string>
+    <string name="next_btn">التالي</string>
+    <string name="home_side_list">الرئيسية</string>
+    <string name="safety_instructions_side_list">تعليمات السلامة العامة</string>
+    <string name="setting_side_list">الاعدادات</string>
+    <string name="log_out_side_list">تسجيل الخروج</string>
+    <string name="drawer_open">فتح</string>
+    <string name="drawer_close">اغلاق</string>
+    <string name="title_activity_maps">الخرائط</string>
+    <string name="hint_phone_number">رقم الهاتف</string>
+    <string name="title_activity_users_home">واجهة المستخدم</string>
+    <string name="action_settings">الاعدادات</string>
+    <string name="menu_home">الرئيسية</string>
+    <string name="request_Map">طلب</string>
+    <string name="title_activity_user_home">واجهة المستخدم</string>
+    <string name="title_activity_map">الخرائط</string>
+    <string name="next">التالي</string>
+    <string name="previous">السابق</string>
+    <string name="request_car">طلب سيارة</string>
+    <string name="language">اللغة :</string>
+    <string name="english">الانجليزية</string>
+    <string name="arabic">العربية</string>
+    <string name="change_password">تغيير كلمة المرور</string>
+    <string name="change_phone">تغيير رقم الهاتف</string>
+    <string name="check_information">التاكد من المعلومات</string>
+    <string name="new_phone">رقم هاتف جديد</string>
+    <string name="navigation_drawer_open">قتح</string>
+    <string name="navigation_drawer_close">اغلاق</string>
+    <string name="menu_slideshow">الانتقال</string>
+    <string name="map">الخرائط</string>
+    <string name="fire">حريق</string>
+    <string name="stroke">السكتة الدماغية</string>
+    <string name="set_description_about_the_action">وصف الحدث</string>
+    <string name="accident">حادث</string>
+    <string name="re_new_phone">ادخل هاتفك الجديد مره اخرى</string>
+    <string name="dealing_with_fires">التعامل مع الحرائق</string>
+    <string name="medical_first_aid">الإسعافات الأولية الطبية</string>
+    <string name="choose_the_branch">اختر الفرع</string>
+    <string name="change_phone_number">تغيير رقم الهاتف</string>
+    <string name="direct_call_des">يرجى التأكد من أنك متصل بالإنترنت. إذا لم يكن هناك إنترنت ، فاستخدم زر الاتصال السريع في الأسفل</string>
+    <string name="forget_password">تغير كلمة المرور</string>
 
-    <string name="hello_first_fragment" translatable="false">Hello first fragment</string>
-    <string name="hello_second_fragment" translatable="false">Hello second fragment. Arg: %1$s</string>
-    <string name="request_car">Request Car</string>
-    <string name="language">Language :</string>
-    <string name="english">English</string>
-    <string name="arabic">Arabic</string>
-    <string name="change_password">Change Password</string>
-    <string name="change_phone">Change Phone</string>
-    <string name="check_information">Check Information</string>
-    <string name="new_phone">New Phone Number</string>
-    <string name="re_new_phone">Re - New Phone Number</string>
-    <string name="fireimage" translatable="false">FireImage</string>
-    <string name="stroke">Stroke</string>
-    <string name="map">Map</string>
-    <string name="fire">Fire</string>
-    <string name="set_description_about_the_action">Set Description About the Action</string>
-    <string name="accident">Accident</string>
-    <string name="dealing_with_fires">Dealing with fires</string>
-    <string name="medical_first_aid">Medical first aid</string>
-    <string name="choose_the_branch">Choose the branch</string>
-    <string name="change_phone_number">Change Phone Number</string>
-    <string name="direct_call_des">Please make sure that you are connected to the Internet. If there is no Internet, use the Quick Connect button at the bottom</string>
-    <string name="forget_password">Forget Password</string>
     <string name="togglebutton">ToggleButton</string>
     <string name="en">EN</string>
     <string name="ar">AR</string>
+
     <string name="safety_1_1">إِذا كان الشخص قادراً على التنفس بقوة فعليه أن يستمر في السعال.</string>
     <string name="safety_1_2">أما إِذا كان الشخص مختنقاً وغير قادر على الكلام أو البكاء أو الضحك بقوة فيجب عمل التالي:</string>
     <string name="safety_1_3">1- الوقوف خلف الشخص المصاب.</string>

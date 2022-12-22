@@ -26,7 +26,7 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_map.*
 import java.text.SimpleDateFormat
 
-class MapActivity : AppCompatActivity() ,OnMapReadyCallback , GoogleMap.OnMarkerClickListener{
+class MapActivity : BaseActivity() ,OnMapReadyCallback , GoogleMap.OnMarkerClickListener{
 
     private lateinit var mMap: GoogleMap
     private lateinit var lastLocation : Location
@@ -73,9 +73,9 @@ class MapActivity : AppCompatActivity() ,OnMapReadyCallback , GoogleMap.OnMarker
                    val bundle: Bundle? =intent.extras
                    val description:String= bundle?.get("description") as String
                    val alertBuilder=AlertDialog.Builder(this)
-                   alertBuilder.setMessage("Are You Sure To Request")
-                   alertBuilder.setPositiveButton("Yes",null)
-                   alertBuilder.setNegativeButton("No",null)
+                   alertBuilder.setMessage(R.string.message_sure_request)
+                   alertBuilder.setPositiveButton(R.string.yes,null)
+                   alertBuilder.setNegativeButton(R.string.no,null)
                    val alert=alertBuilder.create()
                    alert.show()
                    alert.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener()
@@ -122,8 +122,8 @@ class MapActivity : AppCompatActivity() ,OnMapReadyCallback , GoogleMap.OnMarker
 
 
         val alertBuilder = AlertDialog.Builder(this)
-        alertBuilder.setMessage("You Have already Request")
-        alertBuilder.setPositiveButton("Ok", null)
+        alertBuilder.setMessage(R.string.have_request)
+        alertBuilder.setPositiveButton(R.string.ok, null)
         val alertDialog = alertBuilder.create()
         alertDialog.show()
         alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener()

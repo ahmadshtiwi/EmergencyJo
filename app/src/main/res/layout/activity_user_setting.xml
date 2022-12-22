@@ -2,7 +2,7 @@
 <androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/drawer_main_id"
+    android:id="@+id/drawer_setting_id"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:textAlignment="center"
@@ -101,48 +101,49 @@
             android:textDirection="rtl"
             android:textSize="@dimen/text_size_input_box" />
 
+
         <TextView
             android:id="@+id/change_lang_text"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_below="@+id/tv_phone_setting_id"
             android:layout_alignStart="@+id/tv_phone_setting_id"
-            android:layout_alignEnd="@+id/tv_phone_setting_id"
-            android:layout_alignBottom="@+id/tv_phone_setting_id"
-            android:layout_marginStart="-38dp"
-            android:layout_marginTop="49dp"
-            android:layout_marginEnd="138dp"
-            android:layout_marginBottom="-89dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="73dp"
             android:fontFamily="@font/convergence"
             android:text="@string/language"
             android:textAlignment="center"
             android:textColor="#000000"
-            android:textDirection="rtl"
             android:textSize="24sp" />
 
-        <RadioButton
-            android:id="@+id/en_radio"
-            android:layout_width="87dp"
+        <RadioGroup
+            android:id="@+id/rg_language_id"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_phone_setting_id"
-            android:layout_alignEnd="@+id/tv_phone_setting_id"
-            android:layout_marginTop="38dp"
-            android:layout_marginEnd="49dp"
-            android:background="@drawable/bg_description_box"
-            android:text="@string/english"
-            tools:ignore="TouchTargetSizeCheck" />
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="50dp"
+            android:layout_toEndOf="@+id/change_lang_text">
 
-        <RadioButton
-            android:id="@+id/ar_radio"
-            android:layout_width="88dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_phone_setting_id"
-            android:layout_alignEnd="@+id/tv_phone_setting_id"
-            android:layout_marginTop="75dp"
-            android:layout_marginEnd="48dp"
-            android:background="@drawable/bg_description_box"
-            android:text="@string/arabic"
-            tools:ignore="TouchTargetSizeCheck" />
+            <RadioButton
+                android:id="@+id/rb_en_language_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_description_box"
+                android:text="@string/english"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <RadioButton
+                android:id="@+id/rb_ar_language_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_description_box"
+                android:text="@string/arabic"
+                tools:ignore="TouchTargetSizeCheck" />
+
+        </RadioGroup>
+
 
 
     </RelativeLayout>

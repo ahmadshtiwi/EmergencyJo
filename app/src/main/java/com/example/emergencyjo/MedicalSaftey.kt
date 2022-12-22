@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.activity_medical_saftey.*
 import kotlinx.android.synthetic.main.activity_user_setting.*
 import kotlinx.android.synthetic.main.header_side_list.view.*
 
-class MedicalSaftey : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MedicalSaftey : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var userName:String
     private lateinit var toolbar: Toolbar
@@ -102,7 +102,6 @@ class MedicalSaftey : AppCompatActivity(), NavigationView.OnNavigationItemSelect
             }
         }
 
-        //Toast.makeText(this, "$item", Toast.LENGTH_SHORT).show()
         closeDrawer()
         return true
     }
@@ -116,7 +115,7 @@ class MedicalSaftey : AppCompatActivity(), NavigationView.OnNavigationItemSelect
 
     private fun closeDrawer()
     {
-        drawer_main_id.closeDrawer(GravityCompat.START)
+        drawer_medical_id.closeDrawer(GravityCompat.START)
 
     }
     private fun editIdToSharedPreferences() {

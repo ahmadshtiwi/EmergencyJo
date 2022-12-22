@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.activity_change_password.*
 import kotlinx.android.synthetic.main.activity_forgetpassword.*
 
 
-class forgetpassword : AppCompatActivity() {
+class forgetpassword : BaseActivity() {
 
 
     private var mRefEmergencyUser: DatabaseReference? = null
@@ -122,8 +122,8 @@ class forgetpassword : AppCompatActivity() {
 
     private fun showAlert() {
         val alertBuilder = AlertDialog.Builder(this)
-        alertBuilder.setMessage("Wrong Information")
-        alertBuilder.setPositiveButton("Ok", null)
+        alertBuilder.setMessage(R.string.message_wrong_information)
+        alertBuilder.setPositiveButton(R.string.ok, null)
         val alert = alertBuilder.create()
         alert.show()
         alert.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener()
@@ -134,9 +134,9 @@ class forgetpassword : AppCompatActivity() {
 
     private fun showAlertChange() {
         val alertBuilder = AlertDialog.Builder(this)
-        alertBuilder.setMessage("Are You sure to change password")
-        alertBuilder.setPositiveButton("Yes", null)
-        alertBuilder.setNegativeButton("No", null)
+        alertBuilder.setMessage(getString(R.string.message_sure_change_password))
+        alertBuilder.setPositiveButton(R.string.yes, null)
+        alertBuilder.setNegativeButton(R.string.no, null)
 
         val alert = alertBuilder.create()
         alert.show()

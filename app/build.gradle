@@ -69,6 +69,7 @@ dependencies {
    //language
     implementation 'com.zeugmasolutions.localehelper:locale-helper-android:1.5.1'
 
+
 }
 secrets {
     defaultPropertiesFileName 'local.properties'

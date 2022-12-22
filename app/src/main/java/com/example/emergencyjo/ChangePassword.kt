@@ -16,7 +16,7 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_change_password.*
 
 
-class ChangePassword : AppCompatActivity() {
+class ChangePassword : BaseActivity() {
 
 
     private var mRefEmergencyUser: DatabaseReference? = null
@@ -133,9 +133,9 @@ class ChangePassword : AppCompatActivity() {
 
     private fun showAlertChange() {
         val alertBuilder = AlertDialog.Builder(this)
-        alertBuilder.setMessage("Are You sure to change password")
-        alertBuilder.setPositiveButton("Yes", null)
-        alertBuilder.setNegativeButton("No", null)
+        alertBuilder.setMessage(R.string.message_sure_change_password)
+        alertBuilder.setPositiveButton(R.string.yes, null)
+        alertBuilder.setNegativeButton(R.string.no, null)
 
         val alert = alertBuilder.create()
         alert.show()

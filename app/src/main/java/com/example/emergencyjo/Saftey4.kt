@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.activity_saftey4.*
 import kotlinx.android.synthetic.main.activity_user_setting.*
 import kotlinx.android.synthetic.main.header_side_list.view.*
 
-class Saftey4 : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class Saftey4 : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var userName:String
     private lateinit var toolbar: Toolbar
@@ -108,7 +108,7 @@ class Saftey4 : AppCompatActivity(), NavigationView.OnNavigationItemSelectedList
 
     private fun closeDrawer()
     {
-        drawer_main_id.closeDrawer(GravityCompat.START)
+        drawer_safety4_id.closeDrawer(GravityCompat.START)
 
     }
     private fun editIdToSharedPreferences() {

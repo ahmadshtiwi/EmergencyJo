@@ -9,7 +9,6 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
-import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
@@ -20,12 +19,13 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.zeugmasolutions.localehelper.Locales
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.header_side_list.view.*
 
 
-class Main : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener  {
+class Main : BaseActivity(), NavigationView.OnNavigationItemSelectedListener  {
 
 
 
@@ -76,8 +76,11 @@ private lateinit var mRefStatus: DatabaseReference
                 {
                   //  statusData?.clear()
                     statusData?.add(d.getValue(Status::class.java)!!)
-                    Toast.makeText(baseContext, "j", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(baseContext, "j", Toast.LENGTH_SHORT).show()
                 }
+                val adapter=AdapterStatus(baseContext,R.layout.status_view,statusData!!)
+                gd_status_id.adapter=adapter
+
             }
 
             override fun onCancelled(error: DatabaseError) {}
@@ -91,13 +94,16 @@ private lateinit var mRefStatus: DatabaseReference
     override fun onStart() {
         super.onStart()
 
-        val adapter=AdapterStatus(this,R.layout.status_view,statusData!!)
-        gd_status_id.adapter=adapter
 
         gd_status_id.onItemClickListener= AdapterView.OnItemClickListener { parent, view, position, id->
 
-            et_description_box_id.setText(statusData!![position].status.toString())
+            et_description_box_id.setText(statusData!![position].status)
 
+        }
+
+
+        btn_remove_text_id.setOnClickListener {
+            et_description_box_id.setText("")
         }
 
         btn_map_id.setOnClickListener()

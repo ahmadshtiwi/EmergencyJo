@@ -21,7 +21,7 @@ import kotlinx.android.synthetic.main.activity_medical_saftey.view.*
 import kotlinx.android.synthetic.main.activity_user_setting.*
 import kotlinx.android.synthetic.main.header_side_list.view.*
 
-class ChooseSafety : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class ChooseSafety : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var userName:String
     private lateinit var toolbar: Toolbar
@@ -51,12 +51,12 @@ class ChooseSafety : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     btn_dealing_with_fires_id.setOnClickListener()
     {
-        var goToFireSafety=Intent(this,FireSafety::class.java)
+        val goToFireSafety=Intent(this,FireSafety::class.java)
         startActivity(goToFireSafety)
     }
         btn_medical_saftey_id.setOnClickListener()
         {
-            var goToMedicalSafety=Intent(this,MedicalSaftey::class.java)
+            val goToMedicalSafety=Intent(this,MedicalSaftey::class.java)
             startActivity(goToMedicalSafety)
         }
     }
@@ -126,7 +126,7 @@ class ChooseSafety : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun closeDrawer()
     {
-        drawer_main_id.closeDrawer(GravityCompat.START)
+        drawer_safety_id.closeDrawer(GravityCompat.START)
 
     }
     private fun editIdToSharedPreferences() {

@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.activity_change_password.*
 import kotlinx.android.synthetic.main.activity_change_phone.*
 
 
-class ChangePhone : AppCompatActivity() {
+class ChangePhone : BaseActivity() {
 
     private var mRefEmergencyUser: DatabaseReference? = null
     private var position: Int = -1
@@ -116,9 +116,9 @@ class ChangePhone : AppCompatActivity() {
 
     private fun showAlertChange() {
         val alertBuilder = AlertDialog.Builder(this)
-        alertBuilder.setMessage("Are You sure to change your phone number")
-        alertBuilder.setPositiveButton("Yes", null)
-        alertBuilder.setNegativeButton("No", null)
+        alertBuilder.setMessage(R.string.message_sure_change_phone)
+        alertBuilder.setPositiveButton(R.string.yes, null)
+        alertBuilder.setNegativeButton(R.string.no, null)
 
         val alert = alertBuilder.create()
         alert.show()
