@@ -191,9 +191,6 @@ class SignUp : BaseActivity() {
         {
             alertDialog.dismiss()
         }
-
-
-
     }
 
     private fun savedIdToSharedPreferences(data:DataBaseEmergencyUser) {

@@ -13,11 +13,11 @@ class AdapterStatus(var context:Context, private var resource:Int, var data: Arr
     }
 
     override fun getItem(position: Int): Any {
-return data[position]
+        return data[position]
     }
 
     override fun getItemId(position: Int): Long {
-return position.toLong()   }
+        return position.toLong()   }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {
 
@@ -29,7 +29,7 @@ return position.toLong()   }
 
         val text=view?.findViewById<TextView>(R.id.tv_status_id)
 
-        text?.text=data[position].status
+        text?.text=data[position].case_name
 
 
         return view

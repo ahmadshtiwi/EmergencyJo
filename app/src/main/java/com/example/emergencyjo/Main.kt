@@ -6,6 +6,7 @@ import android.net.ConnectivityManager
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.ContactsContract.Data
 import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
@@ -33,7 +34,7 @@ private lateinit var userName:String
 private lateinit var toolbar:Toolbar
 private lateinit var mRefData:DatabaseReference
 private lateinit var headerView:View
- private var statusData: ArrayList<Status>?=null
+private var statusData: ArrayList<Status>?=null
 private lateinit var mRefStatus: DatabaseReference
 
     var name:String?=null
@@ -97,7 +98,7 @@ private lateinit var mRefStatus: DatabaseReference
 
         gd_status_id.onItemClickListener= AdapterView.OnItemClickListener { parent, view, position, id->
 
-            et_description_box_id.setText(statusData!![position].status)
+            et_description_box_id.setText(statusData!![position].case_description)
 
         }
 
@@ -219,7 +220,8 @@ private fun connectDataBase()
 {
     val database=Firebase.database
     mRefData=database.getReference("Emergency_user")
-    mRefStatus=database.getReference("Status")
+    mRefStatus=database.getReference("Common Cases")
+
 
 }
 
