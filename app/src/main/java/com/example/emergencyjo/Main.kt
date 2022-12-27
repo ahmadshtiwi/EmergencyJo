@@ -41,8 +41,9 @@ private lateinit var mRefStatus: DatabaseReference
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        rg_option.visibility = View.INVISIBLE
         et_description_box_id.visibility = View.INVISIBLE
-
+        btn_remove_text_id.visibility =View.INVISIBLE
         statusData=ArrayList()
 
         //Check Internet
@@ -97,13 +98,28 @@ private lateinit var mRefStatus: DatabaseReference
 
 
         gd_status_id.onItemClickListener= AdapterView.OnItemClickListener { parent, view, position, id->
+            et_description_box_id.visibility = View.INVISIBLE
+            rg_option.visibility = View.VISIBLE
+            rb_option_1.setText(statusData!![position].option1_name)
+            rb_option_2.setText(statusData!![position].option2_name)
+            rb_option_3.setText(statusData!![position].option3_name)
 
-            et_description_box_id.visibility = View.VISIBLE
-            et_description_box_id.setText(statusData!![position].case_description)
+            rb_option_1.setOnClickListener{
+                et_description_box_id.setText(rb_option_1.text.toString())
+            }
+            rb_option_2.setOnClickListener{
+                et_description_box_id.setText(rb_option_2.text.toString())
 
+            }
+            rb_option_3.setOnClickListener{
+                et_description_box_id.setText(rb_option_3.text.toString())
+            }
         }
         btn_other_status.setOnClickListener{
-        et_description_box_id.visibility = View.VISIBLE
+
+            btn_remove_text_id.visibility =View.VISIBLE
+            rg_option.visibility = View.INVISIBLE
+            et_description_box_id.visibility = View.VISIBLE
 
         }
 
@@ -115,7 +131,6 @@ private lateinit var mRefStatus: DatabaseReference
         btn_map_id.setOnClickListener()
         {
             if(et_description_box_id.text.toString().isNotEmpty()){
-
 
 
                 intent=Intent(this,MapActivity::class.java)

@@ -126,7 +126,7 @@
             android:layout_toEndOf="@+id/change_lang_text">
 
             <RadioButton
-                android:id="@+id/rb_option_1"
+                android:id="@+id/rb_en_language_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_description_box"
@@ -134,7 +134,7 @@
                 tools:ignore="TouchTargetSizeCheck" />
 
             <RadioButton
-                android:id="@+id/rb_option_3"
+                android:id="@+id/rb_ar_language_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
