@@ -4,12 +4,11 @@ import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.ContactsContract.Data
 import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
@@ -20,7 +19,6 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import com.zeugmasolutions.localehelper.Locales
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.header_side_list.view.*
@@ -34,7 +32,7 @@ private lateinit var userName:String
 private lateinit var toolbar:Toolbar
 private lateinit var mRefData:DatabaseReference
 private lateinit var headerView:View
-private var statusData: ArrayList<Status>?=null
+private lateinit var statusData: ArrayList<Status>
 private lateinit var mRefStatus: DatabaseReference
 
     var name:String?=null
@@ -73,13 +71,13 @@ private lateinit var mRefStatus: DatabaseReference
         {
             override fun onDataChange(snapshot: DataSnapshot) {
 
+                statusData.clear()
                 for(d in snapshot.children)
                 {
-                  //  statusData?.clear()
-                    statusData?.add(d.getValue(Status::class.java)!!)
-                    //Toast.makeText(baseContext, "j", Toast.LENGTH_SHORT).show()
+                    statusData.add(d.getValue(Status::class.java)!!)
+                 //   Toast.makeText(baseContext, "a", Toast.LENGTH_SHORT).show()
                 }
-                val adapter=AdapterStatus(baseContext,R.layout.status_view,statusData!!)
+                val adapter=AdapterStatus(applicationContext,R.layout.status_view,statusData)
                 gd_status_id.adapter=adapter
 
             }
@@ -189,7 +187,6 @@ private lateinit var mRefStatus: DatabaseReference
             }
         }
 
-        //Toast.makeText(this, "$item", Toast.LENGTH_SHORT).show()
         closeDrawer()
         return true
     }

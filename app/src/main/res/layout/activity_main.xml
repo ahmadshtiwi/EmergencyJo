@@ -68,7 +68,7 @@
         <GridView
             android:id="@+id/gd_status_id"
             android:layout_width="match_parent"
-            android:layout_height="128dp"
+            android:layout_height="188dp"
             android:numColumns="3"
             android:textAlignment="center"
             android:verticalSpacing="3dp"
