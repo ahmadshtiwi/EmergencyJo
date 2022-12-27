@@ -132,5 +132,8 @@
     <string name="safety_5_8">7- الاتصال برقم الطوارئ إذا لم يستعيد الشخص وعيه في غضون دقيقة واحدة.</string>
     <string name="safety_5_9">ويجدر التنويه أنه في حال عدم تنفس الشخص المغمى عليه، يجب البدء في إجراء الإنعاش القلبي الرئوي والاتصال على الطوارئ فورًا، والاستمرار في إجراء الإنعاش القلبي الرئوي، حتى يستعيد الشخص تنفسه أو تصل المساعدة.</string>
     <string name="other">other</string>
+    <string name="option_1">option 1</string>
+    <string name="option_2">option 2</string>
+    <string name="option_3">option 3</string>
 
 </resources>

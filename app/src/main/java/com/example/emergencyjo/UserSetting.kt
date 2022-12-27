@@ -7,7 +7,6 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import com.google.android.material.navigation.NavigationView
@@ -16,7 +15,6 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.zeugmasolutions.localehelper.Locales
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_main.drawer_main_id
 import kotlinx.android.synthetic.main.activity_main.nav_side_list_id
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.activity_user_setting.*
@@ -76,11 +74,11 @@ class UserSetting :BaseActivity(), NavigationView.OnNavigationItemSelectedListen
         super.onStart()
 
                                 // set language
-        rb_ar_language_id.setOnClickListener()
+        rb_option_3.setOnClickListener()
         {
             updateLocale(Locales.Arabic)
         }
-        rb_en_language_id.setOnClickListener()
+        rb_option_1.setOnClickListener()
         {
             updateLocale(Locales.English)
         }

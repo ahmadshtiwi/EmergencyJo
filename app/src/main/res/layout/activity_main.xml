@@ -106,6 +106,45 @@
             app:srcCompat="@drawable/remove_icon"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
+        <RadioGroup
+            android:id="@+id/rg_option"
+            android:layout_width="wrap_content"
+            android:layout_height="126dp"
+            android:layout_below="@+id/btn_other_status"
+            android:layout_alignStart="@+id/btn_other_status"
+            android:layout_alignEnd="@+id/btn_other_status"
+            android:layout_marginStart="-57dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginEnd="-64dp">
+
+            <RadioButton
+                android:id="@+id/rb_option_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_description_box"
+                android:text="@string/option_1"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <RadioButton
+                android:id="@+id/rb_option_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_description_box"
+                android:text="@string/option_2"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <RadioButton
+                android:id="@+id/rb_option_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="-5dp"
+                android:background="@drawable/bg_description_box"
+                android:text="@string/option_3"
+                tools:ignore="TouchTargetSizeCheck" />
+
+        </RadioGroup>
 
     </RelativeLayout>
 
