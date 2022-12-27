@@ -41,6 +41,8 @@ private lateinit var mRefStatus: DatabaseReference
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        et_description_box_id.visibility = View.INVISIBLE
+
         statusData=ArrayList()
 
         //Check Internet
@@ -96,7 +98,12 @@ private lateinit var mRefStatus: DatabaseReference
 
         gd_status_id.onItemClickListener= AdapterView.OnItemClickListener { parent, view, position, id->
 
+            et_description_box_id.visibility = View.VISIBLE
             et_description_box_id.setText(statusData!![position].case_description)
+
+        }
+        btn_other_status.setOnClickListener{
+        et_description_box_id.visibility = View.VISIBLE
 
         }
 

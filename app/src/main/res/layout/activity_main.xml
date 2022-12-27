@@ -24,10 +24,10 @@
             android:id="@+id/btn_map_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/et_description_box_id"
+            android:layout_below="@+id/btn_other_status"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="104dp"
-            android:layout_marginEnd="40dp"
+            android:layout_marginTop="417dp"
+            android:layout_marginEnd="45dp"
             android:background="@drawable/bg_button_master"
             android:fontFamily="@font/convergence"
             android:text="@string/map"
@@ -37,13 +37,29 @@
             android:textStyle="bold" />
 
         <Button
+            android:id="@+id/btn_other_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/gd_status_id"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="163dp"
+            android:background="@drawable/bg_button_master"
+            android:fontFamily="@font/convergence"
+            android:text="@string/other"
+            android:textAllCaps="false"
+            android:textColor="@color/text2"
+            android:textSize="@dimen/text_size_button"
+            android:textStyle="bold" />
+
+        <Button
             android:id="@+id/btn_direct_call_id"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/et_description_box_id"
+            android:layout_below="@+id/btn_other_status"
             android:layout_alignParentStart="true"
             android:layout_marginStart="31dp"
-            android:layout_marginTop="105dp"
+            android:layout_marginTop="418dp"
             android:background="@drawable/bg_description_box"
             android:fontFamily="@font/convergence"
             android:text="@string/direct_call"
@@ -56,9 +72,10 @@
             android:id="@+id/et_description_box_id"
             android:layout_width="353dp"
             android:layout_height="194dp"
-            android:layout_below="@+id/gd_status_id"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
+            android:layout_below="@+id/btn_other_status"
+            android:layout_alignEnd="@+id/btn_other_status"
+            android:layout_marginTop="139dp"
+            android:layout_marginEnd="-131dp"
             android:background="@drawable/bg_description_box"
             android:ems="10"
             android:gravity="center"
@@ -68,25 +85,26 @@
         <GridView
             android:id="@+id/gd_status_id"
             android:layout_width="match_parent"
-            android:layout_height="188dp"
-            android:numColumns="3"
-            android:textAlignment="center"
-            android:verticalSpacing="3dp"
-            android:horizontalSpacing="3dp"
+            android:layout_height="130dp"
             android:layout_below="@+id/header_id"
             android:layout_marginTop="10dp"
-          />
+            android:horizontalSpacing="3dp"
+            android:numColumns="3"
+            android:textAlignment="center"
+            android:verticalSpacing="3dp" />
 
         <ImageButton
             android:id="@+id/btn_remove_text_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/et_description_box_id"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:padding="5dp"
+            android:layout_below="@+id/btn_other_status"
+            android:layout_alignEnd="@+id/et_description_box_id"
+            android:layout_marginTop="376dp"
+            android:layout_marginEnd="165dp"
             android:background="@drawable/bg_button_master"
-            app:srcCompat="@drawable/remove_icon" />
+            android:padding="5dp"
+            app:srcCompat="@drawable/remove_icon"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
 
     </RelativeLayout>
