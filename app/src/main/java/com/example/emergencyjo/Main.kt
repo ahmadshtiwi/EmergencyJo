@@ -116,7 +116,7 @@ private lateinit var mRefStatus: DatabaseReference
             }
         }
         btn_other_status.setOnClickListener{
-
+            et_description_box_id.setText("")
             btn_remove_text_id.visibility =View.VISIBLE
             rg_option.visibility = View.INVISIBLE
             et_description_box_id.visibility = View.VISIBLE
