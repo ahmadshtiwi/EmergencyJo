@@ -178,7 +178,7 @@ class SignUp : BaseActivity() {
 
     private fun showAlertFoundAccount() {
         val alertBuilder=AlertDialog.Builder(this)
-        alertBuilder.setMessage(R.string.message_personal_id_empty)
+        alertBuilder.setMessage("The account is registered , Go to login")
         alertBuilder.setPositiveButton(R.string.btn_login,null)
         alertBuilder.setNeutralButton(R.string.btn_cancel_alertdialog,null)
         val alertDialog=alertBuilder.create()

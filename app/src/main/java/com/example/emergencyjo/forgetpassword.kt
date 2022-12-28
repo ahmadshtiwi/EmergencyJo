@@ -1,6 +1,7 @@
 package com.example.emergencyjo
 
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -102,9 +103,8 @@ class forgetpassword : BaseActivity() {
                 et_re_password_layout_forgetpassword.error = "Not Match"
             } else {
                 showAlertChange()
-
-
             }
+
         }
 
     }
@@ -158,6 +158,8 @@ class forgetpassword : BaseActivity() {
 
                     )
                 )
+            val intent = Intent(this , Login::class.java)
+            startActivity(intent)
             hideComponents()
             alert.dismiss()
         }
