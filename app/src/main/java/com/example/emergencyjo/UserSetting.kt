@@ -74,11 +74,11 @@ class UserSetting :BaseActivity(), NavigationView.OnNavigationItemSelectedListen
         super.onStart()
 
                                 // set language
-        rb_option_3.setOnClickListener()
+        rb_ar_language_id.setOnClickListener()
         {
             updateLocale(Locales.Arabic)
         }
-        rb_option_1.setOnClickListener()
+        rb_en_language_id.setOnClickListener()
         {
             updateLocale(Locales.English)
         }
