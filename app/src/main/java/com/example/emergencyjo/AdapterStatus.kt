@@ -9,10 +9,12 @@ import android.widget.TextView
 
 class AdapterStatus(var context:Context, private var resource:Int, var data: ArrayList<Status>):BaseAdapter() {
     override fun getCount(): Int {
+        //Get size of data
         return data.size
     }
 
     override fun getItem(position: Int): Any {
+        //check data position
         return data[position]
     }
 
@@ -27,8 +29,10 @@ class AdapterStatus(var context:Context, private var resource:Int, var data: Arr
             view=LayoutInflater.from(context).inflate(resource,parent,false)
         }
 
+        //Definition text as status id from status id xml
         val text=view?.findViewById<TextView>(R.id.tv_status_id)
 
+        //Store case name in text
         text?.text=data[position].case_name
 
 
