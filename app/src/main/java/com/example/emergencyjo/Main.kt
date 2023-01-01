@@ -344,7 +344,7 @@ private fun connectDataBase()
     mRefData=database.getReference("Emergency_user")
 
     //Connect to Common Cases to get status
-    mRefStatus=database.getReference("Common Cases")
+    mRefStatus=database.getReference("Common_Accident")
 
 
 }

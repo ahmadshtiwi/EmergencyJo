@@ -33,7 +33,7 @@ class AdapterStatus(var context:Context, private var resource:Int, var data: Arr
         val text=view?.findViewById<TextView>(R.id.tv_status_id)
 
         //Store case name in text
-        text?.text=data[position].case_name
+        text?.text=data[position].accident_name
 
 
         return view
