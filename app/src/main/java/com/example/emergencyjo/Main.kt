@@ -1,7 +1,9 @@
 package com.example.emergencyjo
 
+import android.Manifest
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.ConnectivityManager
 import android.net.Uri
 import android.os.Bundle
@@ -11,8 +13,10 @@ import android.widget.AdapterView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
+import androidx.core.app.ActivityCompat
 import androidx.core.view.GravityCompat
-import androidx.core.view.isGone
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -48,6 +52,10 @@ private lateinit var mRefStatus: DatabaseReference
 
     var name:String?=null
 
+    private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
+    private var currentLon:Double=0.0
+    private var currentLat:Double=0.0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -59,6 +67,10 @@ private lateinit var mRefStatus: DatabaseReference
 
         //Definition StatusData As ArrayList
         statusData=ArrayList()
+
+        // access to location
+        fusedLocationProviderClient= LocationServices.getFusedLocationProviderClient(this)
+        getLocation()
 
         //Function to check if user connected to internet if not go to DirectCall Activity
         if ( ! isNetworkConnected() ) {
@@ -118,18 +130,38 @@ private lateinit var mRefStatus: DatabaseReference
 
     }
 
+    private fun getLocation() {
+        if(ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED
+            && ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_COARSE_LOCATION)!= PackageManager.PERMISSION_GRANTED)
+        {
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),100)
+            return
+        }
+        val location=fusedLocationProviderClient.lastLocation
+        location.addOnSuccessListener {
+            if(it!=null)
+            {
+                currentLat=it.latitude
+                currentLon=it.longitude
+            }
+        }
+    }
+
     override fun onStart() {
         super.onStart()
 
          //Click on Status button
-        gd_status_id.onItemClickListener= AdapterView.OnItemClickListener { parent, view, position, id->
+        gd_status_id.onItemClickListener= AdapterView.OnItemClickListener { _, _, position, _->
+
             //Make Radio Group Visible
             rg_option.visibility = View.VISIBLE
 
             //Set Radio Group Text From Database
-            rb_option_1.setText(statusData!![position].option1_name)
-            rb_option_2.setText(statusData!![position].option2_name)
-            rb_option_3.setText(statusData!![position].option3_name)
+            rb_option_1.text = statusData[position].option1_name
+            rb_option_2.text = statusData[position].option2_name
+            rb_option_3.text = statusData[position].option3_name
 
             //Make description and remove btn INVISIBLE
             et_description_box_id.visibility = View.GONE
@@ -180,13 +212,22 @@ private lateinit var mRefStatus: DatabaseReference
 
                 // Send Description value to database
                 intent.putExtra("description",et_description_box_id.text.toString())
-               startActivity(intent)
+                if((ch_ambulance_id.isChecked&&ch_fire_fighter_id.isChecked)||(!ch_ambulance_id.isChecked&&!ch_fire_fighter_id.isChecked))
+                    intent.putExtra("type_car","both")
+                else if(ch_ambulance_id.isChecked)
+                    intent.putExtra("type_car","Ambulance")
+                else
+                    intent.putExtra("type_car","FireTruck")
+
+
+                startActivity(intent)
             }
 
             //If description box is empty will not go to map activity
             else
            {
                et_description_box_id.error="Set Description "
+               Toast.makeText(this, "Please Set Description", Toast.LENGTH_SHORT).show()
            }
 
         }

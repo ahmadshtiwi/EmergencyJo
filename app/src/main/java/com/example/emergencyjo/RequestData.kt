@@ -9,5 +9,6 @@ data class RequestData(
     var phone:String="",
     var governorate:String="",
     var description:String="",
-    var time:String=""
+    var time:String="",
+    var type_car:String=""
 )

@@ -135,5 +135,7 @@
     <string name="option_1" translatable="false">option 1</string>
     <string name="option_2" translatable="false">option 2</string>
     <string name="option_3" translatable="false">option 3</string>
+    <string name="firefighter">FireFighter</string>
+    <string name="fire_truck">Fire Truck</string>
 
 </resources>

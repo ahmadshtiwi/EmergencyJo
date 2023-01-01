@@ -33,6 +33,9 @@ class MapActivity : BaseActivity() ,OnMapReadyCallback , GoogleMap.OnMarkerClick
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private  var  database = Firebase.database
     private  var  mRefRequest = database.getReference("Requests")
+    private  var  mRefCar = database.getReference("Car")
+
+
 
     companion object{
         private const val LOCATION_REQUEST_CODE = 1
@@ -72,6 +75,7 @@ class MapActivity : BaseActivity() ,OnMapReadyCallback , GoogleMap.OnMarkerClick
 
                    val bundle: Bundle? =intent.extras
                    val description:String= bundle?.get("description") as String
+                   val typeCar:String=bundle.getString("type_car","")
                    val alertBuilder=AlertDialog.Builder(this)
                    alertBuilder.setMessage(R.string.message_sure_request)
                    alertBuilder.setPositiveButton(R.string.yes,null)
@@ -94,18 +98,21 @@ class MapActivity : BaseActivity() ,OnMapReadyCallback , GoogleMap.OnMarkerClick
                                else
                                {
                                    val request = RequestData(location.latitude, location.longitude,getInfo(UserProperties.USER_PERSONAL_ID),
-                                       getInfo(UserProperties.USER_NAME),getInfo(UserProperties.USER_PHONE),getInfo(UserProperties.USER_GOVERNORATE),description,getCurrentDate())
+                                       getInfo(UserProperties.USER_NAME),getInfo(UserProperties.USER_PHONE)
+                                       ,getInfo(UserProperties.USER_GOVERNORATE),description,getCurrentDate(),typeCar)
                                    mRefRequest.child(key).setValue(request)
                                    finish()
 
                                }
-
                            }
-
                            override fun onCancelled(error: DatabaseError) {
                            }
 
                        })
+
+
+
+
 
 
                 }
