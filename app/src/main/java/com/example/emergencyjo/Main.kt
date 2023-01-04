@@ -159,9 +159,32 @@ private lateinit var mRefStatus: DatabaseReference
             rg_option.visibility = View.VISIBLE
 
             //Set Radio Group Text From Database
-            rb_option_1.text = statusData[position].option1_name
-            rb_option_2.text = statusData[position].option2_name
-            rb_option_3.text = statusData[position].option3_name
+            if(statusData[position].option1_name!!.isNotEmpty())
+            {
+                rb_option_1.text = statusData[position].option1_name
+                rb_option_1.visibility=View.VISIBLE
+                
+
+            }
+            else
+                rb_option_1.visibility=View.GONE
+            if(statusData[position].option1_name!!.isNotEmpty())
+            {
+                rb_option_2.text = statusData[position].option2_name
+                rb_option_2.visibility=View.VISIBLE
+
+            }
+            else
+                rb_option_2.visibility=View.GONE
+            if(statusData[position].option3_name!!.isNotEmpty())
+            {
+                rb_option_3.text = statusData[position].option3_name
+                rb_option_3.visibility=View.VISIBLE
+
+            }
+            else
+                rb_option_3.visibility=View.GONE
+
 
             //Make description and remove btn INVISIBLE
             et_description_box_id.visibility = View.GONE
