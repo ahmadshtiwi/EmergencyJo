@@ -7,6 +7,7 @@ import android.icu.util.Calendar
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -101,6 +102,7 @@ class MapActivity : BaseActivity() ,OnMapReadyCallback , GoogleMap.OnMarkerClick
                                        getInfo(UserProperties.USER_NAME),getInfo(UserProperties.USER_PHONE)
                                        ,getInfo(UserProperties.USER_GOVERNORATE),description,getCurrentDate(),typeCar)
                                    mRefRequest.child(key).setValue(request)
+                                   Toast.makeText(applicationContext,"شكرا لك , سوف يتم التعامل مع الحاله بأسرع وقت",Toast.LENGTH_LONG).show()
                                    finish()
 
                                }
